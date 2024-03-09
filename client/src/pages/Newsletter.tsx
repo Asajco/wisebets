@@ -1,0 +1,72 @@
+import {
+  Button,
+  Flex,
+  Heading,
+  Input,
+  Textarea,
+  useToast,
+} from '@chakra-ui/react'
+import axios from 'axios'
+import React, { useState } from 'react'
+import { colors } from '../store/colors'
+
+const Newsletter = () => {
+  const [subject, setSubject] = useState<any>('')
+  const [message, setMessage] = useState<any>('')
+  const toast = useToast()
+  const handleSendNewsletter = async () => {
+    await axios
+      .post('http://localhost:4000/send-newsletter', {
+        subject: subject,
+        message: message,
+      })
+      .then((response: any) => {
+        console.log(response.data) // Log the response from the server
+        toast({
+          title: 'Úspešné vytvrorenie',
+          duration: 1000,
+          position: 'top-right',
+        })
+        // Update UI or show a success message
+      })
+      .catch((error: any) => {
+        console.error('Error:', error)
+        toast({
+          title: 'Niekde nastala chyba',
+          duration: 1000,
+          position: 'top-right',
+        })
+        // Handle errors or show error message
+      })
+    // setEmail('')
+  }
+
+  return (
+    <Flex h="92vh" flexDir="column" alignItems="center" gap="2rem">
+      <Heading color={colors.primaryGold}>Vytvorenie newslettru</Heading>
+
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.5rem',
+          width: '20rem',
+          color: 'white',
+        }}
+      >
+        <Input
+          placeholder="Predmet newslettru"
+          onChange={(e) => setSubject(e.target.value)}
+        />
+        <Textarea
+          placeholder="Text newslettru"
+          onChange={(e) => setMessage(e.target.value)}
+        />
+        <Button onClick={() => handleSendNewsletter()}>Odoslať</Button>
+      </form>
+    </Flex>
+  )
+}
+
+export default Newsletter

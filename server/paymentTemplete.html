@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .wrapper {
+        background-color: rgb(29, 29, 29);
+        font-family: "Poppins";
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        color: white;
+        height: 50rem;
+      }
+      .header {
+        color: #dab56f;
+        font-size: 4rem;
+        margin-left: 0 auto;
+        margin-right: 0 auto;
+      }
+      .price {
+        font-size: 2.5rem;
+      }
+      .link {
+        font-weight: bold;
+        color: #dab56f;
+        align-self: center;
+        text-decoration: none;
+        margin-left: 0 auto;
+        margin-right: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h2 class="header">Ďakujeme za zakúpienie členstva {{product_name}}</h2>
+      <p>Celková uhradená suma: <b>{{total_price}} € </b></p>
+      <div>
+        <p>
+          V ďalšom emaily Vám príde link na Telegram skupinu, podľa členstva
+          ktoré, ste si zakúpili
+        </p>
+        <a href="{{telegramLink}}" class="link">Telegram skupina</a>
+      </div>
+    </div>
+  </body>
+</html>
