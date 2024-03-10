@@ -57,11 +57,11 @@ app.post('/send-email', async (req, res) => {
   let telegramLink
 
   if (product_name == 'Starter') {
-    telegramLink = 'https://t.me/+C5XS9mpFGbhmOGI0'
+    telegramLink = 'https://t.me/+2-HpO01lSFQ1M2E8'
   } else if (product_name == 'Pro') {
-    telegramLink = 'https://t.me/+o3ilEwqDxgk4NmNk'
+    telegramLink = 'https://t.me/+YsBGqHvGlDY0OTVk'
   } else if (product_name == 'Elite') {
-    telegramLink = 'https://t.me/+YlWo_ADHW31kM2Fk'
+    telegramLink = 'https://t.me/+21tl9G0tDddlODk0'
   }
   replacementd = {
     total_price: total_price,

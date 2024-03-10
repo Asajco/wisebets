@@ -12,7 +12,13 @@ const Card = (data: any) => {
   )
   const handleBuy = () => {
     setCart((prevCart) => [...prevCart, data])
-    setTotalPriceOfCart(Number(totalPriceOfCart) + Number(data.price))
+    window.scrollTo({
+      top: 0,
+    })
+    setTotalPriceOfCart(
+      //@ts-ignore
+      (Number(totalPriceOfCart) + Number(data.price)).toFixed(2),
+    )
     navigate('/cart')
   }
   return (

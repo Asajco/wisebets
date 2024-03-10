@@ -3,46 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      .wrapper {
-        background-color: rgb(29, 29, 29);
-        font-family: "Poppins";
-        align-items: center;
-        gap: 1rem;
-        padding: 1rem;
-        color: white;
-        height: 50rem;
-      }
-      .header {
-        color: #dab56f;
-        font-size: 4rem;
-        margin-left: 0 auto;
-        margin-right: 0 auto;
-      }
-      .price {
-        font-size: 2.5rem;
-      }
-      .link {
-        font-weight: bold;
-        color: #dab56f;
-        align-self: center;
-        text-decoration: none;
-        margin-left: 0 auto;
-        margin-right: 0 auto;
-      }
-    </style>
   </head>
-  <body>
-    <div class="wrapper">
-      <h2 class="header">Ďakujeme za zakúpienie členstva {{product_name}}</h2>
-      <p>Celková uhradená suma: <b>{{total_price}} € </b></p>
-      <div>
-        <p>
-          V ďalšom emaily Vám príde link na Telegram skupinu, podľa členstva
-          ktoré, ste si zakúpili
-        </p>
-        <a href="{{telegramLink}}" class="link">Telegram skupina</a>
-      </div>
-    </div>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: rgb(29, 29, 29);
+    "
+  >
+    <table cellpadding="0" cellspacing="0" width="100%">
+      <tr>
+        <td style="padding: 20px 0; text-align: center">
+          <h2 style="color: #dab56f; font-size: 36px">
+            Ďakujeme za zakúpienie členstva {{product_name}}
+          </h2>
+          <p style="color: white; font-size: 20px">
+            Celková uhradená suma: <strong>{{total_price}} €</strong>
+          </p>
+          <p style="color: white; font-size: 20px">
+            Pre prípadné otázky Nás prosím kontaktuje na sociálnych sieťach
+            uvedených na stránke.
+          </p>
+          <p style="text-align: center">
+            <a
+              href="{{telegramLink}}"
+              style="
+                color: #dab56f;
+                font-size: 20px;
+                text-decoration: none;
+                font-weight: bold;
+              "
+              >Telegram skupina</a
+            >
+          </p>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>

@@ -72,7 +72,7 @@ const Cart = () => {
               borderColor={colors.primaryGold}
               justifyContent="space-between"
               borderRadius="0.5rem"
-              gap={isSmallerThan900 ? 3 : 0}
+              gap={isSmallerThan900 ? 3 : '1rem'}
             >
               <Text
                 fontWeight="bold"

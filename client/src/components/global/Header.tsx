@@ -98,7 +98,7 @@ const Header = () => {
       justifyContent="space-between"
     >
       <Link to="/">
-        <Image src={logo} alt="WiseBets" maxW="7rem" maxH="5rem" />
+        <Image src={logo} alt="WiseBets" maxW="7rem" maxH="5rem" mt="0.75rem" />
       </Link>
       <Button
         onClick={onOpen}
@@ -137,7 +137,7 @@ const Header = () => {
             <Link to="/contact" onClick={onClose}>
               Kontakt
             </Link>
-            <Link to="/cart">
+            <Link to="/cart" onClick={onClose}>
               <FaShoppingCart size={30} color={colors.primaryGold} />
             </Link>
             <Button

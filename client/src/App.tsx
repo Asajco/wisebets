@@ -5,12 +5,13 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import { Box } from '@chakra-ui/react'
 import Cart from './pages/Cart'
-import Payment from './pages/Payment'
+
 import StripeContainer from './components/StripeContainer'
-import PaymentForm from './components/PaymentForm'
+
 import Succes from './pages/Succes'
 import Footer from './components/global/Footer'
-import Newsletter from './pages/Newsletter'
+
+import Admin from './pages/Admin'
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         <Route path="/qna" element={<About />} />
         <Route path="/succes" element={<Succes />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/news-letter" element={<Newsletter />} />
+
+        <Route path="/admin" element={<Admin />} />
         <Route path="*" element={<Home />} />
       </Routes>
       <Footer />

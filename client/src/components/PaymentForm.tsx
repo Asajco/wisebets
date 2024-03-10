@@ -6,21 +6,24 @@ import Success from '../pages/Succes'
 import {
   Button,
   Flex,
+  FormLabel,
   Heading,
   Input,
   Text,
   useMediaQuery,
 } from '@chakra-ui/react'
 import { colors } from '../store/colors'
-
+import { db } from '../firebase/config'
+import { v4 } from 'uuid'
+import { collection, doc, setDoc } from 'firebase/firestore'
 export default function PaymentForm() {
   const [success, setSuccess] = useState(false)
   const [userEmail, setUserEmail] = useState<any>()
+  const [userPhone, setUserPhone] = useState<any>()
   const stripe: any = useStripe()
   const { totalPriceOfCart, cart } = useContext(CartContext)
   const [isSmallerThan1200] = useMediaQuery('(max-width: 1200px)')
   const name = cart.map((item) => item.name).toString()
-  console.log(name)
 
   const handleExpressCheckout = async (e: any) => {
     e.preventDefault()
@@ -30,13 +33,20 @@ export default function PaymentForm() {
         currency: 'eur',
         name: `Členstvo ${name}`,
       })
-      console.log(userEmail)
-
+      console.log(totalPriceOfCart)
+      const itemId = v4()
+      setDoc(doc(collection(db, 'orders'), itemId), {
+        id: itemId,
+        email: userEmail,
+        phone: userPhone,
+        name: name,
+      })
       if (response.data.sessionId) {
         localStorage.setItem('userEmail', userEmail)
         //@ts-ignore
         localStorage.setItem('totalPrice', totalPriceOfCart)
         localStorage.setItem('product_name', name)
+
         const { error } = await stripe.redirectToCheckout({
           sessionId: response.data.sessionId,
         })
@@ -49,7 +59,16 @@ export default function PaymentForm() {
       console.error('Error initiating Express Checkout:', error)
     }
   }
-
+  const handleFirebase = async () => {
+    const itemId = v4()
+    setDoc(doc(collection(db, 'orders'), itemId), {
+      id: itemId,
+      email: userEmail,
+      phone: userPhone,
+      name: name,
+    })
+    console.log('yes')
+  }
   return (
     <>
       {!success ? (
@@ -75,6 +94,7 @@ export default function PaymentForm() {
                     justifyContent="space-between"
                     color="white"
                     alignItems="center"
+                    borderBottom="2px solid white"
                   >
                     <Text
                       fontStyle="bold"
@@ -92,6 +112,7 @@ export default function PaymentForm() {
                 ))}
               </Flex>
             </fieldset>
+
             <Input
               onChange={(e) => setUserEmail(e.target.value)}
               border="2px solid "
@@ -100,6 +121,18 @@ export default function PaymentForm() {
               mt="2rem"
               placeholder="Zadajte váš email..."
             />
+
+            <Input
+              onChange={(e) => setUserPhone(e.target.value)}
+              border="2px solid "
+              color="white"
+              borderColor={colors.primaryGold}
+              mt="2rem"
+              placeholder="Zadajte vaše tel. číslo"
+            />
+            <Text color="white" fontSize="0.8rem" mt="0.5rem">
+              Zadajte číslo, ktoré používate v aplikácii Telegram
+            </Text>
             <Button
               type="button"
               onClick={handleExpressCheckout}
@@ -117,6 +150,7 @@ export default function PaymentForm() {
             >
               Zaplatiť
             </Button>
+            <Button onClick={handleFirebase}>Uložiť</Button>
           </form>
         </Flex>
       ) : (

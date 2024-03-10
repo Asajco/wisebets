@@ -11,7 +11,7 @@ const WorkWithUs = () => {
     <Flex mt="3rem" flexDirection="column" alignItems="center" maxW="100%">
       <Heading
         color={colors.primaryGold}
-        fontSize="2.8rem"
+        fontSize={isSmallerThan1200 ? '2rem' : '2.8rem'}
         textDecoration="underline"
         textAlign="center"
       >
