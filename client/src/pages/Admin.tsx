@@ -28,8 +28,8 @@ const Admin = () => {
         w="20rem"
         placeholder="Zadajte heslo"
       />
-
-      {name === 'olejnikrobert241@gmail.com' && password === 'WiseBets1' && (
+      {/* olejnikrobert241@gmail.com */}
+      {name === 'test' && password === 'WiseBets1' && (
         <Flex gap="2rem">
           <Orders />
           <Newsletter />

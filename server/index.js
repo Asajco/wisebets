@@ -187,6 +187,14 @@ app.post('/send-newsletter', async (req, res) => {
         pass: 'iqhn mzvb jxhn watj',
       },
     })
+    const source = fs
+      .readFileSync('newsletterTemplate.html', 'utf-8')
+      .toString()
+    const templete = handleBar.compile(source)
+    replacementd = {
+      message: message,
+    }
+    const htmlToSend = templete(replacementd)
 
     // Create email options
     const mailOptions = {
@@ -194,6 +202,7 @@ app.post('/send-newsletter', async (req, res) => {
       to: emails.join(','), // Join all emails from the array
       subject: subject,
       text: message,
+      html: htmlToSend,
     }
 
     try {
@@ -203,7 +212,7 @@ app.post('/send-newsletter', async (req, res) => {
           from: 'petergacj@gmail.com',
           to: email,
           subject: subject,
-          text: message,
+          html: htmlToSend,
         }
 
         await transporter.sendMail(mailOptions)

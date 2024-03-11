@@ -1,12 +1,12 @@
 import { useStripe } from '@stripe/react-stripe-js'
 import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import CartContext from '../store/cartContext'
 import Success from '../pages/Succes'
 import {
   Button,
+  Checkbox,
   Flex,
-  FormLabel,
   Heading,
   Input,
   Text,
@@ -20,6 +20,7 @@ export default function PaymentForm() {
   const [success, setSuccess] = useState(false)
   const [userEmail, setUserEmail] = useState<any>()
   const [userPhone, setUserPhone] = useState<any>()
+  const [allowed, setAllowed] = useState(false)
   const stripe: any = useStripe()
   const { totalPriceOfCart, cart } = useContext(CartContext)
   const [isSmallerThan1200] = useMediaQuery('(max-width: 1200px)')
@@ -59,16 +60,7 @@ export default function PaymentForm() {
       console.error('Error initiating Express Checkout:', error)
     }
   }
-  const handleFirebase = async () => {
-    const itemId = v4()
-    setDoc(doc(collection(db, 'orders'), itemId), {
-      id: itemId,
-      email: userEmail,
-      phone: userPhone,
-      name: name,
-    })
-    console.log('yes')
-  }
+
   return (
     <>
       {!success ? (
@@ -133,24 +125,34 @@ export default function PaymentForm() {
             <Text color="white" fontSize="0.8rem" mt="0.5rem">
               Zadajte číslo, ktoré používate v aplikácii Telegram
             </Text>
-            <Button
-              type="button"
-              onClick={handleExpressCheckout}
-              mt="3rem"
-              alignSelf="center"
-              w="100%"
-              color="whitesmoke"
-              border="2px solid  #dab56f"
-              bg="black"
-              _hover={{
-                backgroundColor: '#dab56f',
-                color: 'black',
-                border: 'none',
-              }}
+
+            <Checkbox
+              onChange={(e) => setAllowed(e.target.checked)}
+              color="white"
+              mt="2rem"
             >
-              Zaplatiť
-            </Button>
-            <Button onClick={handleFirebase}>Uložiť</Button>
+              Súhlasím so spracovaním osobných údajov
+            </Checkbox>
+            {allowed && (
+              <Button
+                type="button"
+                onClick={handleExpressCheckout}
+                mt="3rem"
+                disabled={!allowed}
+                alignSelf="center"
+                w="100%"
+                color="whitesmoke"
+                border="2px solid  #dab56f"
+                bg="black"
+                _hover={{
+                  backgroundColor: '#dab56f',
+                  color: 'black',
+                  border: 'none',
+                }}
+              >
+                Zaplatiť
+              </Button>
+            )}
           </form>
         </Flex>
       ) : (
