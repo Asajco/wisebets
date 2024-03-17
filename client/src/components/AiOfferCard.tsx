@@ -10,7 +10,7 @@ const AiOfferCard = (data: any) => {
     <Flex
       flexDir="column"
       alignItems="center"
-      w="15rem"
+      w="17rem"
       p="1.5rem"
       border="2px solid"
       borderRadius="0.5rem"
@@ -32,6 +32,7 @@ const AiOfferCard = (data: any) => {
         textAlign="justify"
         mt="1.5rem"
         color="whitesmoke"
+        fontSize="1.10rem"
         alignSelf="flex-end"
       >
         {data.text}

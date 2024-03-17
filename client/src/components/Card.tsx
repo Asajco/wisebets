@@ -49,7 +49,7 @@ const Card = (data: any) => {
           color={colors.primaryGold}
           alignSelf="center"
         >
-          {data.name}
+          {data.name.toUpperCase()}
         </Heading>
         <Text fontWeight="bold" color={colors.primaryGold}>
           {data.succes}
@@ -59,7 +59,7 @@ const Card = (data: any) => {
         <Text>{data.support}</Text>
         <Text>{data.notification}</Text>
         <Text>{data.shortDescription ? data.shortDescription : null}</Text>
-        <Text fontWeight="bold" color={colors.primaryGold}>
+        <Text fontWeight="bold" fontSize="1.25rem" color={colors.primaryGold}>
           {data.price} €
         </Text>
       </Flex>

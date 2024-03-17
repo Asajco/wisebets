@@ -65,19 +65,6 @@ const About = () => {
             <Text fontFamily="Poppins" color="whitesmoke">
               {item.answer}
             </Text>
-            {item.answers ? (
-              <Flex
-                color="whitesmoke"
-                justifyContent="space-between"
-                flexDir={isSmallerThan1200 ? 'column' : 'row'}
-                gap={isSmallerThan1200 ? '1rem' : '1rem'}
-                textAlign="left"
-              >
-                <Text>{item.answers.answer1}</Text>
-                <Text>{item.answers.answer2}</Text>
-                <Text>{item.answers.answer3}</Text>
-              </Flex>
-            ) : null}
           </Flex>
         </motion.div>
       ))}

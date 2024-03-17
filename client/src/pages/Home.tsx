@@ -42,7 +42,12 @@ const Home = () => {
         Prečo si vybrať nás?
       </Heading>
       <motion.div>
-        <Text color="whitesmoke" fontFamily="Poppins" textAlign="center">
+        <Text
+          color="whitesmoke"
+          fontFamily="Poppins"
+          textAlign="center"
+          fontSize="1.25rem"
+        >
           Ponúkame Vám revolučné stávkové poradenstvo s využitím najmodernejších
           technológií umelej inteligencie (AI).
         </Text>

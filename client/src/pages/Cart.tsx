@@ -65,9 +65,9 @@ const Cart = () => {
               flexDir="row"
               maxW="100%"
               alignItems="center"
-              p="2.5rem"
+              p={isSmallerThan900 ? '0.5rem' : '2rem'}
               fontFamily="Poppins"
-              h="2rem"
+              h={isSmallerThan900 ? '4rem' : '2rem'}
               border="2px solid"
               borderColor={colors.primaryGold}
               justifyContent="space-between"

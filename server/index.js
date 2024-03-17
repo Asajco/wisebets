@@ -83,24 +83,19 @@ app.post('/send-email', async (req, res) => {
     to: customer_email,
     subject: `Úspešná platba za členstvo ${product_name}`,
     text: 'Ďakujeme za nákkup',
-    //   html: `<div style="display:flex; flex-direction:column; gap:2rem; align-items:center; justify-content:space-around; padding:3rem;">
-    //   <h1>Ďakujeme za kúpu členstva ${product_name}</h1>
-
-    //   <p>Uhradená suma: ${total_price} €</p>
-    //   <p>Pre pokračovanie kliknite na odkaz nižšie</p>
-    //  <a href="${
-    //    product_name === 'Pro'
-    //      ? 'https://github.com/Asajco'
-    //      : product_name === 'Elite'
-    //      ? 'https://www.linkedin.com/in/jakub-petergáč-050338238/'
-    //      : product_name === 'Starter'
-    //      ? 'https://example.com/starter'
-    //      : '#'
-    //  }" target="_blank">Telegram</a>
-    //   <p>V prípade otázok nás kontaktujte na sociálnych sietiach uvedených na webovej stránke.</p>
-
-    //   </div>`,
     html: htmlToSend,
+    attachments: [
+      {
+        filename:
+          'SPRACOVANIE OSOBNÝCH ÚDAJOV Informačná povinnosť prevádzkovateľa voči dotknutej osobe-2.pdf',
+        path:
+          './pdf/SPRACOVANIE OSOBNÝCH ÚDAJOV Informačná povinnosť prevádzkovateľa voči dotknutej osobe-2.pdf',
+      },
+      {
+        filename: 'Reklamačný formulár.pdf',
+        path: './pdf/Reklamačný formulár.pdf',
+      },
+    ],
   }
 
   try {

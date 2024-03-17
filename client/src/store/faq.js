@@ -18,7 +18,7 @@ export const faqs = [
   {
     question: 'Dostanem faktúru?',
     answer:
-      'Áno dostanete. Sme oficiálne zapísaná firma, takže faktúra je samozrejmosťou. Mali by ste ju dostať na mail do 14 dní od prijatia platby.',
+      'Áno dostanete. Sme oficiálne zapísaná spoločnosť, takže faktúra je samozrejmosťou. Dostanete ju vždy do 14 dní od prijatia platby',
   },
   {
     question: 'Ako částo budem dostávať tipy?',
@@ -29,14 +29,8 @@ export const faqs = [
   {
     question: 'Prečo posielate tipy v rôznych časoch?',
     image: money,
-    answers: {
-      answer1:
-        'Analýza a vyhodnotenie: Na vytvorenie kvalitných tipov potrebujeme čas na analýzu a vyhodnotenie dostupných informácií.',
-      answer2:
-        'Aktuálne informácie: Situácia v športe sa neustále mení a my sa snažíme reagovať na tieto zmeny a posielať vám tipy na základe najaktuálnejších informácií.',
-      answer3:
-        'Optimalizácia zisku: Niektoré športové udalosti sú vhodné na stávkovanie v rôznych časoch dňa. Snažíme sa preto posielať tipy vtedy, keď je šanca na zisk najvyššia.',
-    },
+    answer:
+      'Analýza a vyhodnotenie: Na vytvorenie kvalitných tipov potrebujeme čas na analýzu a vyhodnotenie dostupných informácií. Aktuálne informácie: Situácia v športe sa neustále mení a my sa snažíme reagovať na tieto zmeny a posielať vám tipy na základe najaktuálnejších informácií. Optimalizácia zisku: Niektoré športové udalosti sú vhodné na stávkovanie v rôznych časoch dňa. Snažíme sa preto posielať tipy vtedy, keď je šanca na zisk najvyššia.',
   },
   {
     question: 'Je úspešnosť garantovaná?',

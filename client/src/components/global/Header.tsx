@@ -60,7 +60,7 @@ const Header = () => {
         </Link>
       </Box>
       <Flex
-        w="30rem"
+        w="40rem"
         color={colors.primaryGold}
         justifyContent="space-between"
         mr={10}
@@ -71,7 +71,7 @@ const Header = () => {
               Produkty
             </motion.div>
           </Link> */}
-          <a href="#products">Produkts</a>
+          <a href="#products">AKTIVÁCIA ČLENSTVA</a>
         </Text>
         <Link to="/qna">
           <motion.div whileHover="hover" variants={linkVariants}>
@@ -131,7 +131,7 @@ const Header = () => {
             <a href="#products" onClick={onClose}>
               Produkts
             </a>
-            <Link to="/qna" onClick={onClose}>
+            <Link to="/qna" onClick={onClose} style={{ textAlign: 'center' }}>
               Často kladené otázky
             </Link>
             <Link to="/contact" onClick={onClose}>

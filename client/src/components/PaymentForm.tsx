@@ -24,6 +24,7 @@ export default function PaymentForm() {
   const stripe: any = useStripe()
   const { totalPriceOfCart, cart } = useContext(CartContext)
   const [isSmallerThan1200] = useMediaQuery('(max-width: 1200px)')
+  const [isSmallerThan900] = useMediaQuery('(max-width: 900px)')
   const name = cart.map((item) => item.name).toString()
 
   const handleExpressCheckout = async (e: any) => {
@@ -65,7 +66,7 @@ export default function PaymentForm() {
     <>
       {!success ? (
         <Flex
-          h="92vh"
+          minH="92vh"
           p="2rem"
           alignItems="center"
           flexDir="column"
@@ -74,14 +75,19 @@ export default function PaymentForm() {
           <form onSubmit={(e) => e.preventDefault()}>
             <fieldset className="FormGroup">
               <Flex flexDir="column" alignItems="center" className="FormRow">
-                <Heading color={colors.primaryGold} m="1rem">
+                <Heading
+                  color={colors.primaryGold}
+                  m={isSmallerThan900 ? 0 : '1rem'}
+                  mb={isSmallerThan900 ? '1rem' : 0}
+                >
                   Sumár objednávky
                 </Heading>
 
                 {cart.map((item) => (
                   <Flex
-                    w="20rem"
+                    maxW="25rem"
                     gap="8px"
+                    mt="1rem"
                     key={item._id}
                     justifyContent="space-between"
                     color="white"
@@ -96,7 +102,8 @@ export default function PaymentForm() {
                     </Text>
                     <Text
                       fontSize={isSmallerThan1200 ? '1rem' : '1.6rem'}
-                      w="7rem"
+                      maxW="7rem"
+                      textAlign="center"
                     >
                       {item.price} €
                     </Text>
@@ -138,6 +145,7 @@ export default function PaymentForm() {
                 type="button"
                 onClick={handleExpressCheckout}
                 mt="3rem"
+                mb={isSmallerThan900 ? '2rem' : 0}
                 disabled={!allowed}
                 alignSelf="center"
                 w="100%"
