@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.js": "/static/js/main.72c13ef3.js",
+    "static/media/SPRACOVANIE OSOBNÝCH ÚDAJOV Informačná povinnosť prevádzkovateľa voči dotknutej osobe-2.pdf": "/static/media/SPRACOVANIE OSOBNÝCH ÚDAJOV Informačná povinnosť prevádzkovateľa voči dotknutej osobe-2.f7d3348729e32b137ae5.pdf",
+    "static/media/VŠEOBECNÉ OBCHODNÉ PODMIENKY Informačná povinnosť o všeobecných obchodných podmienkach-3.pdf": "/static/media/VŠEOBECNÉ OBCHODNÉ PODMIENKY Informačná povinnosť o všeobecných obchodných podmienkach-3.3a843cb210ca7bc18e0c.pdf",
+    "static/media/PODMIENKY PLATIEB A AKTIVÁCIE.pdf": "/static/media/PODMIENKY PLATIEB A AKTIVÁCIE.aa2ea931989062cd4f34.pdf",
+    "static/media/item2.png": "/static/media/item2.24fe83d40bca95384975.png",
+    "static/media/item1.png": "/static/media/item1.6266262e1edac3188305.png",
+    "static/media/stats.png": "/static/media/stats.919aa056f0776ac5c663.png",
+    "static/media/crown.png": "/static/media/crown.a198a05e75ee2aa0e0f4.png",
+    "static/media/money.png": "/static/media/money.035608137ae76af98b77.png",
+    "static/media/contact_image.png": "/static/media/contact_image.25094ccef7527f05b377.png",
+    "static/media/diamond.png": "/static/media/diamond.492b6fc59a94fc48efe2.png",
+    "static/media/logo.png": "/static/media/logo.b118ba5917071dba698d.png",
+    "index.html": "/index.html",
+    "main.72c13ef3.js.map": "/static/js/main.72c13ef3.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.72c13ef3.js"
+  ]
+}
