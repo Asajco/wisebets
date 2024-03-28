@@ -49,7 +49,7 @@ const Home = () => {
           fontSize="1.25rem"
         >
           Ponúkame Vám revolučné stávkové poradenstvo s využitím najmodernejších
-          technológií umelej inteligencie (AI).
+          technológií umelej inteligencie (AI)
         </Text>
       </motion.div>
       <Flex
