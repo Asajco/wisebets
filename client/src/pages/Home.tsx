@@ -41,7 +41,7 @@ const Home = () => {
       >
         Prečo si vybrať nás?
       </Heading>
-      <motion.div>
+      <motion.div style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>
         <Text
           color="whitesmoke"
           fontFamily="Poppins"
@@ -59,7 +59,7 @@ const Home = () => {
         alignItems="flex-start"
         gap="1rem"
         color="white"
-        p="3rem"
+        p="2.5rem"
         maxW="40rem"
         fontFamily="Poppins"
       >

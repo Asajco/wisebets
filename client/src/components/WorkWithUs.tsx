@@ -28,7 +28,7 @@ const WorkWithUs = () => {
           <Heading color={colors.primaryGold} mb="0.5rem">
             1. Výber služby
           </Heading>
-          <Text textAlign="justify">
+          <Text textAlign="justify" style={{ textJustify: 'inter-word' }}>
             V prvom kroku si vyberiete z 3 služieb, tú ktorá vám najviac
             vyhovuje
           </Text>
@@ -84,12 +84,11 @@ const WorkWithUs = () => {
         </Flex>
         <Flex flexDir="column" alignItems="flex-end" maxW="40rem" mt="1rem">
           <Heading color={colors.primaryGold} mb="0.5rem">
-            4. Konzultácia s klientom
+            4. Zárobok
           </Heading>
           <Text maxW="30rem" textAlign="justify">
-            Po aktivácii členstva sa s vami skontaktuje náš konzultant. Počas
-            konzultácie nám poviete svoje preferencie a ciele. Na základe týchto
-            informácií vám pomocou AI vyberieme najvhodnejšie riešenie.
+            Po aktivácii vášho členstva máte okamžitý prístup k všetkým
+            informáciám, ktoré potrebujete na to, aby ste začali ZARÁBAŤ.
           </Text>
         </Flex>
       </Flex>

@@ -10,7 +10,7 @@ const AiOfferCard = (data: any) => {
     <Flex
       flexDir="column"
       alignItems="center"
-      w="17rem"
+      w="18.5rem"
       p="1.5rem"
       border="2px solid"
       borderRadius="0.5rem"
@@ -34,6 +34,7 @@ const AiOfferCard = (data: any) => {
         color="whitesmoke"
         fontSize="1.10rem"
         alignSelf="flex-end"
+        style={{ textJustify: 'inter-word' }}
       >
         {data.text}
       </Text>

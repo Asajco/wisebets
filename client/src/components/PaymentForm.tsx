@@ -18,6 +18,7 @@ import { v4 } from 'uuid'
 import { collection, doc, setDoc } from 'firebase/firestore'
 export default function PaymentForm() {
   const [success, setSuccess] = useState(false)
+  const [userName, setUserName] = useState<any>()
   const [userEmail, setUserEmail] = useState<any>()
   const [userPhone, setUserPhone] = useState<any>()
   const [allowed, setAllowed] = useState(false)
@@ -29,6 +30,21 @@ export default function PaymentForm() {
 
   const handleExpressCheckout = async (e: any) => {
     e.preventDefault()
+    try {
+      console.log('tu som')
+      const response = await axios.post(
+        'http://localhost:4000/create-invoice',
+        {
+          name: `Členstvo ${name}`,
+          unitPrice: totalPriceOfCart / 100,
+          clientName: userName,
+          tax: 20,
+        },
+      )
+      console.log('Response from SuperFaktura:', response.data)
+    } catch (error) {
+      console.log(error)
+    }
     try {
       const response = await axios.post('http://localhost:4000/payment', {
         amount: totalPriceOfCart * 100,
@@ -111,7 +127,14 @@ export default function PaymentForm() {
                 ))}
               </Flex>
             </fieldset>
-
+            <Input
+              onChange={(e) => setUserName(e.target.value)}
+              border="2px solid "
+              color="white"
+              borderColor={colors.primaryGold}
+              mt="2rem"
+              placeholder="Zadajte vaše meno..."
+            />
             <Input
               onChange={(e) => setUserEmail(e.target.value)}
               border="2px solid "
