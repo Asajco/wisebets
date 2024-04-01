@@ -33,7 +33,9 @@ export default function PaymentForm() {
     try {
       console.log('tu som')
       const response = await axios.post(
-        'http://localhost:4000/create-invoice',
+        //https://wisebets.onrender.com
+        //http://localhost:4000
+        'https://wisebets.onrender.com/create-invoice',
         {
           name: `Členstvo ${name}`,
           unitPrice: totalPriceOfCart / 100,
@@ -46,11 +48,14 @@ export default function PaymentForm() {
       console.log(error)
     }
     try {
-      const response = await axios.post('http://localhost:4000/payment', {
-        amount: totalPriceOfCart * 100,
-        currency: 'eur',
-        name: `Členstvo ${name}`,
-      })
+      const response = await axios.post(
+        'https://wisebets.onrender.com/payment',
+        {
+          amount: totalPriceOfCart * 100,
+          currency: 'eur',
+          name: `Členstvo ${name}`,
+        },
+      )
       console.log(totalPriceOfCart)
       const itemId = v4()
       setDoc(doc(collection(db, 'orders'), itemId), {

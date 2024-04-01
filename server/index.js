@@ -35,8 +35,9 @@ app.post('/payment', cors(), async (req, res) => {
         },
       ],
       mode: 'payment',
-      success_url: 'http://localhost:3000/#/succes',
-      cancel_url: 'http://localhost:3000/cancel',
+      //
+      success_url: 'https://wisebets.onrender.com/#/succes',
+      cancel_url: 'https://wisebets.onrender.com/cancel',
     })
     console.log('Session created:', session.id)
     console.log(req.body)
