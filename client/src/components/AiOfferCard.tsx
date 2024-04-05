@@ -1,10 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react'
 import React from 'react'
 import { colors } from '../store/colors'
-import { color } from 'framer-motion'
 
 const AiOfferCard = (data: any) => {
-  console.log(data)
   data = data.data
   return (
     <Flex

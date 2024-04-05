@@ -17,8 +17,15 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.post('/payment', cors(), async (req, res) => {
-  let { amount, currency, name } = req.body
-
+  let { amount, currency, name, email } = req.body
+  let productId
+  if (name == 'Členstvo STARTER') {
+    productId = 'price_1P2HeNLsF6CdETVcOF9L8HM5'
+  } else if (name == 'Členstvo PRO') {
+    productId = 'price_1P2HfvLsF6CdETVcukMK5ybk'
+  } else {
+    productId = 'price_1P2HgPLsF6CdETVcD5ysXOBN'
+  }
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -34,9 +41,10 @@ app.post('/payment', cors(), async (req, res) => {
           quantity: 1,
         },
       ],
-      mode: 'payment',
-      //
-      success_url: 'https://wisebets.onrender.com/#/succes',
+      mode: 'description',
+      customer_email: email,
+      //TODO change routing to okay route
+      success_url: 'https://wisebets.sk/#/succes',
       cancel_url: 'https://wisebets.onrender.com/cancel',
     })
     console.log('Session created:', session.id)
@@ -260,7 +268,7 @@ app.post('/create-invoice', async (req, res) => {
       {
         headers: {
           Authorization:
-            'SFAPI email=petergacj@gmail.com&apikey=mxaMWZ2GENpDQwH9sorZOeCHiHaPgGKy&company_id=108929',
+            'SFAPI email=wisebets.official@gmail.com&apikey=5zw10h2QlCDhFNorlcX0oXtZaFhJJOCJ&company_id=09349',
         },
       },
     )

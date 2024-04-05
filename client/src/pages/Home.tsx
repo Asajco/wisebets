@@ -1,17 +1,9 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Image,
-  Text,
-  useMediaQuery,
-} from '@chakra-ui/react'
+import { Flex, Heading, Image, Text, useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { products } from '../store/products'
 import Card from '../components/Card'
-import { useInView } from 'react-intersection-observer'
-import { TItem } from '../types/types'
+
 import { colors } from '../store/colors'
 import { aiOffer } from '../store/products'
 import WorkWithUs from '../components/WorkWithUs'

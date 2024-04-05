@@ -25,7 +25,7 @@ const Footer = () => {
 
   const handleSubscribe = async () => {
     await axios
-      .post('http://localhost:4000/add-email', { email: email })
+      .post('https://wisebets.onrender.com/add-email', { email: email })
       .then((response: any) => {
         console.log(email)
         toast({

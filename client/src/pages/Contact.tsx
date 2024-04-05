@@ -20,13 +20,12 @@ import axios from 'axios'
 const Contact = () => {
   const [email, setEmail] = useState<any>()
   const image = require('../assets/contact_image.png')
-  console.log(email)
+
   const [isSmallerThan1000] = useMediaQuery('(max-width: 1000px)')
   const handleSubscribe = async () => {
     await axios
       .post('http://localhost:4000/add-email', { email: email })
       .then((response: any) => {
-        console.log(email)
         console.log(response.data) // Log the response from the server
         // Update UI or show a success message
       })

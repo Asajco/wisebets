@@ -31,7 +31,6 @@ export default function PaymentForm() {
   const handleExpressCheckout = async (e: any) => {
     e.preventDefault()
     try {
-      console.log('tu som')
       const response = await axios.post(
         //https://wisebets.onrender.com
         //http://localhost:4000
@@ -54,9 +53,10 @@ export default function PaymentForm() {
           amount: totalPriceOfCart * 100,
           currency: 'eur',
           name: `Členstvo ${name}`,
+          email: userEmail,
         },
       )
-      console.log(totalPriceOfCart)
+
       const itemId = v4()
       setDoc(doc(collection(db, 'orders'), itemId), {
         id: itemId,

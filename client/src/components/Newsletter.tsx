@@ -16,7 +16,7 @@ const Newsletter = () => {
   const toast = useToast()
   const handleSendNewsletter = async () => {
     await axios
-      .post('http://localhost:4000/send-newsletter', {
+      .post('https://wisebets.onrender.com/send-newsletter', {
         subject: subject,
         message: message,
       })

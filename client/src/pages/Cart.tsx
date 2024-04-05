@@ -29,7 +29,6 @@ const Cart = () => {
     const updatedCart = cart.filter((item) => item.id !== id)
     setCart(updatedCart)
     setTotalPriceOfCart((prevCart) => Number(prevCart) - Number(price))
-    console.log(cart)
   }
   return (
     <Flex h="90vh" flexDir="column" alignItems="center" position="relative">
