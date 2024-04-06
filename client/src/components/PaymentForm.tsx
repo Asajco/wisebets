@@ -35,7 +35,7 @@ export default function PaymentForm() {
       const response = await axios.post(
         //https://wisebets.onrender.com
         //http://localhost:4000
-        'http://localhost:4000/create-invoice',
+        'https://wisebets.onrender.com/create-invoice',
         {
           name: `Členstvo ${name}`,
           unitPrice: totalPriceOfCart,
@@ -57,7 +57,7 @@ export default function PaymentForm() {
         productId = 'price_1P2HgPLsF6CdETVcD5ysXOBN'
       }
       const response = await axios.post(
-        'https:/wisebets-backend.vercel.app/payment',
+        'https://wisebets.onrender.com/payment',
         {
           // amount: totalPriceOfCart * 100,
           amount: 0,

@@ -16,7 +16,7 @@ app.use(bodyParser.json())
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://wisebets.sk' || 'http://localhost:3000',
     credentials: true, //access-control-allow-credentials:true
     optionSuccessStatus: 200,
   }),
@@ -44,8 +44,8 @@ app.post('/payment', cors(), async (req, res) => {
       mode: 'subscription',
       customer_email: email,
       //TODO change routing to okay route
-      success_url: 'http://localhost:3000/#/succes',
-      cancel_url: 'http://localhost:3000/#/cancel',
+      success_url: 'http://wisebets.sk/#/succes',
+      cancel_url: 'http://wisebets.sk/#/cancel',
     })
     console.log('Session created:', session.id)
     console.log(req.body)
