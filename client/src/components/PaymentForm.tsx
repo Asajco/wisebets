@@ -56,14 +56,17 @@ export default function PaymentForm() {
       } else {
         productId = 'price_1P2HgPLsF6CdETVcD5ysXOBN'
       }
-      const response = await axios.post('http://localhost:4000/payment', {
-        // amount: totalPriceOfCart * 100,
-        amount: 0,
-        currency: 'eur',
-        name: `Členstvo ${name}`,
-        email: userEmail,
-        // planId: productId,
-      })
+      const response = await axios.post(
+        'https://wisebets-backend-9lmrwpjh3-asajcos-projects.vercel.app/payment',
+        {
+          // amount: totalPriceOfCart * 100,
+          amount: 0,
+          currency: 'eur',
+          name: `Členstvo ${name}`,
+          email: userEmail,
+          // planId: productId,
+        },
+      )
       toast({
         title: 'Za chvílľu budete presmerovaný',
         status: 'info',

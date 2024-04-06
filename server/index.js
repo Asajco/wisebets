@@ -14,7 +14,11 @@ let invoiceID = 0
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.use(cors())
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+  }),
+)
 
 app.post('/payment', cors(), async (req, res) => {
   let { amount, currency, name, email, planId } = req.body
