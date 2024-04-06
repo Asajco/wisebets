@@ -38,7 +38,7 @@ export default function PaymentForm() {
         'http://localhost:4000/create-invoice',
         {
           name: `Členstvo ${name}`,
-          unitPrice: totalPriceOfCart / 100,
+          unitPrice: totalPriceOfCart,
           clientName: userName,
           tax: 20,
         },

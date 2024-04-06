@@ -234,22 +234,22 @@ app.post('/create-invoice', async (req, res) => {
 
   try {
     console.log(name, tax, unitPrice, clientName, invoiceID)
-
+    let price = (unitPrice / 100) * 80
     const data = {
       Invoice: {
         name: name,
       },
       InvoiceItem: [
         {
-          description: 'description of item 1',
-          name: 'item 1',
+          description: 'Wisebets členstvo',
+          name: name,
           tax: tax,
-          unit_price: (unitPrice * 80).toFixed(2),
+          unit_price: price.toFixed(2),
         },
       ],
       Client: {
         name: clientName,
-        ico: '44981082',
+        // ico: '44981082',
       },
     }
 
