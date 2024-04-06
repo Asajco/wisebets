@@ -57,7 +57,7 @@ export default function PaymentForm() {
         productId = 'price_1P2HgPLsF6CdETVcD5ysXOBN'
       }
       const response = await axios.post(
-        'https://wisebets-backend-9lmrwpjh3-asajcos-projects.vercel.app/payment',
+        'https:/wisebets-backend.vercel.app/payment',
         {
           // amount: totalPriceOfCart * 100,
           amount: 0,
