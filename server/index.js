@@ -14,13 +14,7 @@ let invoiceID = 0
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.use(
-  cors({
-    origin: 'http://wisebets.sk' || 'http://localhost:3000',
-    credentials: true, //access-control-allow-credentials:true
-    optionSuccessStatus: 200,
-  }),
-)
+app.use(cors())
 
 app.post('/payment', cors(), async (req, res) => {
   let { amount, currency, name, email, planId } = req.body
