@@ -154,8 +154,8 @@ const Home = () => {
         gap="2rem"
         id="products"
       >
-        {Object.values(products)?.map((product: any) => (
-          <Card data={product} />
+        {Object.values(products)?.map((product: any, index) => (
+          <Card data={product} key={index} />
         ))}
       </Flex>
       <WorkWithUs />
@@ -168,8 +168,8 @@ const Home = () => {
         ČO VÁM PONÚKA UMELÁ INTELIGENCIA (AI)
       </Heading>
       <Flex gap="2.5rem" flexDirection={isSmallerThan900 ? 'column' : 'row'}>
-        {aiOffer.map((item: any) => (
-          <AiOfferCard data={item} />
+        {aiOffer.map((item: any, index) => (
+          <AiOfferCard data={item} key={index} />
         ))}
       </Flex>
       {/* <motion.div>
