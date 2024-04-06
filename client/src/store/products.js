@@ -6,7 +6,7 @@ export const products = [
     tips: '1 AI TIP DENNE',
     support: '24/7 SUPPORT CHAT',
     notification: 'Telegram notifikácie',
-    price: '49.99',
+    price: '59.90',
   },
   {
     id: 2,

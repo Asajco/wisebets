@@ -11,6 +11,7 @@ import {
   Input,
   Text,
   useMediaQuery,
+  useToast,
 } from '@chakra-ui/react'
 import { colors } from '../store/colors'
 import { db } from '../firebase/config'
@@ -27,14 +28,14 @@ export default function PaymentForm() {
   const [isSmallerThan1200] = useMediaQuery('(max-width: 1200px)')
   const [isSmallerThan900] = useMediaQuery('(max-width: 900px)')
   const name = cart.map((item) => item.name).toString()
-
+  const toast = useToast()
   const handleExpressCheckout = async (e: any) => {
     e.preventDefault()
     try {
       const response = await axios.post(
         //https://wisebets.onrender.com
         //http://localhost:4000
-        'https://wisebets.onrender.com/create-invoice',
+        'http://localhost:4000/create-invoice',
         {
           name: `Členstvo ${name}`,
           unitPrice: totalPriceOfCart / 100,
@@ -47,16 +48,28 @@ export default function PaymentForm() {
       console.log(error)
     }
     try {
-      const response = await axios.post(
-        'https://wisebets.onrender.com/payment',
-        {
-          amount: totalPriceOfCart * 100,
-          currency: 'eur',
-          name: `Členstvo ${name}`,
-          email: userEmail,
-        },
-      )
-
+      let productId
+      if (name == 'Členstvo STARTER') {
+        productId = 'price_1P2HeNLsF6CdETVcOF9L8HM5'
+      } else if (name == 'Členstvo PRO') {
+        productId = 'price_1P2HfvLsF6CdETVcukMK5ybk'
+      } else {
+        productId = 'price_1P2HgPLsF6CdETVcD5ysXOBN'
+      }
+      const response = await axios.post('http://localhost:4000/payment', {
+        amount: totalPriceOfCart * 100,
+        currency: 'eur',
+        name: `Členstvo ${name}`,
+        email: userEmail,
+        planId: productId,
+      })
+      toast({
+        title: 'Za chvílľu budete presmerovaný',
+        status: 'info',
+        duration: 2000,
+        isClosable: true,
+        position: 'top-right',
+      })
       const itemId = v4()
       setDoc(doc(collection(db, 'orders'), itemId), {
         id: itemId,
@@ -65,6 +78,7 @@ export default function PaymentForm() {
         name: name,
       })
       if (response.data.sessionId) {
+        console.log(response.data)
         localStorage.setItem('userEmail', userEmail)
         //@ts-ignore
         localStorage.setItem('totalPrice', totalPriceOfCart)
