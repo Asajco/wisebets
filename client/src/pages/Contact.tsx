@@ -6,7 +6,7 @@ import {
   Img,
   Input,
   Text,
-  Textarea,
+  useToast,
   useMediaQuery,
 } from '@chakra-ui/react'
 
@@ -16,23 +16,35 @@ import { colors } from '../store/colors'
 import { FaFacebook } from 'react-icons/fa6'
 import { FaInstagram, FaTelegram } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { collection, doc, setDoc } from 'firebase/firestore'
+import { db } from '../firebase/config'
 const Contact = () => {
   const [email, setEmail] = useState<any>()
   const image = require('../assets/contact_image.png')
-
+  const toast = useToast()
   const [isSmallerThan1000] = useMediaQuery('(max-width: 1000px)')
   const handleSubscribe = async () => {
-    await axios
-      .post('https://wisebets.onrender.com/add-email', { email: email })
-      .then((response: any) => {
-        console.log(response.data) // Log the response from the server
-        // Update UI or show a success message
+    try {
+      await setDoc(doc(collection(db, 'emails'), email), {
+        email,
       })
-      .catch((error: any) => {
-        console.error('Error:', error)
-        // Handle errors or show error message
+      toast({
+        title: 'Úspešné prihlásenie na odber!',
+        position: 'top-right',
+        duration: 2000,
+        status: 'info',
       })
+    } catch (error) {
+      console.log(error)
+      toast({
+        title: `Nepodarilo sa prihlásiť na odber!`,
+        description: `Skontrolujte prosím vaše údaje a skúste znovu.`,
+        position: 'top-right',
+        isClosable: true,
+        duration: 5000,
+        status: 'error',
+      })
+    }
     // setEmail('')
   }
   return (
@@ -138,7 +150,7 @@ const Contact = () => {
             </Text>
           </Link>
           <Link
-            to="t.me/wisebets_official"
+            to="https://www.t.me/wisebets_official"
             target="_blanc"
             style={{
               display: 'flex',

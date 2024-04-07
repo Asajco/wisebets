@@ -151,7 +151,7 @@ const Footer = () => {
               borderRight={isSmallerThan900 ? 'none' : '2px solid gray'}
               pr="1rem"
             >
-              Spracovanie osobných
+              Spracovanie osobných údajov
             </Text>
           </a>
 
