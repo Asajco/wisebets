@@ -48,10 +48,11 @@ export default function PaymentForm() {
     //   console.log(error)
     // }
     try {
+      console.log(name)
       let productId
-      if (name == 'Členstvo STARTER') {
+      if (name == 'Starter') {
         productId = 'price_1P2HeNLsF6CdETVcOF9L8HM5'
-      } else if (name == 'Členstvo PRO') {
+      } else if (name == 'Pro') {
         productId = 'price_1P2HfvLsF6CdETVcukMK5ybk'
       } else {
         productId = 'price_1P2HgPLsF6CdETVcD5ysXOBN'
@@ -64,7 +65,7 @@ export default function PaymentForm() {
           currency: 'eur',
           name: `Členstvo ${name}`,
           email: userEmail,
-          // planId: productId,
+          planId: productId,
         },
       )
       toast({
