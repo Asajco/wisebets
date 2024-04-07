@@ -200,7 +200,7 @@ app.post('/send-newsletter', async (req, res) => {
     // Create email options
     const mailOptions = {
       from: 'petergacj@gmail.com', // Replace with your email
-      to: emails.join(','), // Join all emails from the array
+      // to: emails.join(','), // Join all emails from the array
       subject: subject,
       text: message,
       html: htmlToSend,
