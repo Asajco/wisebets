@@ -161,7 +161,7 @@ app.post('/add-email', (req, res) => {
 })
 
 app.post('/send-newsletter', async (req, res) => {
-  const { subject, message } = req.body
+  const { subject, message, emails } = req.body
 
   // Read emails from JSON file
   fs.readFile(emailJsonFilePath, 'utf-8', async (err, data) => {
@@ -170,15 +170,15 @@ app.post('/send-newsletter', async (req, res) => {
       return res.status(500).json({ error: 'Error reading JSON file' })
     }
 
-    let emails = []
+    // let emails = []
 
-    try {
-      // Parse the existing JSON data
-      emails = JSON.parse(data).emails
-    } catch (error) {
-      console.error('Error parsing JSON data:', error)
-      return res.status(500).json({ error: 'Error parsing JSON data' })
-    }
+    // try {
+    //   // Parse the existing JSON data
+    //   emails = JSON.parse(data).emails
+    // } catch (error) {
+    //   console.error('Error parsing JSON data:', error)
+    //   return res.status(500).json({ error: 'Error parsing JSON data' })
+    // }
 
     // Create transporter
     const transporter = nodeMailer.createTransport({

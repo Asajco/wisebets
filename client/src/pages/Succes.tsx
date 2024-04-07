@@ -22,7 +22,7 @@ const Succes = ({ customer_email }: any) => {
       const totalPrice = localStorage.getItem('totalPrice')
       const productName = localStorage.getItem('product_name')
 
-      await axios.post('http://localhost:4000/send-email', {
+      await axios.post('http://https://wisebets.onrender.com/send-email', {
         customer_email: userEmail,
         total_price: totalPrice,
         product_name: productName,

@@ -9,16 +9,30 @@ import {
 import axios from 'axios'
 import React, { useState } from 'react'
 import { colors } from '../store/colors'
+import { collection, doc, getDocs } from 'firebase/firestore'
+import { db } from '../firebase/config'
 
 const Newsletter = () => {
   const [subject, setSubject] = useState<any>('')
   const [message, setMessage] = useState<any>('')
+  const [emails, setEmails] = useState<any>()
   const toast = useToast()
   const handleSendNewsletter = async () => {
+    const emailsSnapshot = await getDocs(collection(db, 'emails'))
+    console.log(emailsSnapshot)
+    const emailData = emailsSnapshot.docs.map((doc) => {
+      const data = doc.data()
+      return data.email
+    })
+    console.log(emailData)
+    if (emailData) {
+      setEmails(emailData)
+    }
     await axios
       .post('https://wisebets.onrender.com/send-newsletter', {
         subject: subject,
         message: message,
+        emails: emails,
       })
       .then((response: any) => {
         console.log(response.data) // Log the response from the server

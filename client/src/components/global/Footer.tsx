@@ -11,7 +11,10 @@ import {
 import React, { useState } from 'react'
 import { colors } from '../../store/colors'
 import { Link } from 'react-router-dom'
+import { collection, doc, setDoc } from 'firebase/firestore'
+import { db } from '../../firebase/config'
 import axios from 'axios'
+import { v4 } from 'uuid'
 
 const Footer = () => {
   const [email, setEmail] = useState<any>()
@@ -24,29 +27,50 @@ const Footer = () => {
   const logo = require('../../assets/logo.png')
 
   const handleSubscribe = async () => {
-    await axios
-      .post('https://wisebets.onrender.com/add-email', { email: email })
-      .then((response: any) => {
-        console.log(email)
-        toast({
-          title: 'Úspešné prihlásenie na odber!',
-          position: 'top-right',
-          duration: 1000,
-          status: 'info',
-        })
-        console.log(response.data) // Log the response from the server
-        // Update UI or show a success message
+    try {
+      await setDoc(doc(collection(db, 'emails'), email), {
+        email,
       })
-      .catch((error: any) => {
-        console.error('Error:', error)
-        toast({
-          title: 'Niekde nastala chyba!',
-          position: 'top-right',
-          duration: 1000,
-          status: 'error',
-        })
-        // Handle errors or show error message
+      toast({
+        title: 'Úspešné prihlásenie na odber!',
+        position: 'top-right',
+        duration: 1000,
+        status: 'info',
       })
+    } catch (error) {
+      console.log(error)
+      toast({
+        title: `Nepodarilo sa prihlásiť na odber!`,
+        description: `Skontrolujte prosím vaše údaje a skúste znovu.`,
+        position: 'top-right',
+        isClosable: true,
+        duration: 5000,
+        status: 'error',
+      })
+    }
+    // await axios
+    //   .post('https://wisebets.onrender.com/add-email', { email: email })
+    //   .then((response: any) => {
+    //     console.log(email)
+    //     toast({
+    //       title: 'Úspešné prihlásenie na odber!',
+    //       position: 'top-right',
+    //       duration: 1000,
+    //       status: 'info',
+    //     })
+    //     console.log(response.data) // Log the response from the server
+    //     // Update UI or show a success message
+    //   })
+    //   .catch((error: any) => {
+    //     console.error('Error:', error)
+    //     toast({
+    //       title: 'Niekde nastala chyba!',
+    //       position: 'top-right',
+    //       duration: 1000,
+    //       status: 'error',
+    //     })
+    //     // Handle errors or show error message
+    //   })
     // setEmail('')
   }
 

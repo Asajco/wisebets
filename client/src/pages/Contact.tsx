@@ -24,7 +24,7 @@ const Contact = () => {
   const [isSmallerThan1000] = useMediaQuery('(max-width: 1000px)')
   const handleSubscribe = async () => {
     await axios
-      .post('http://localhost:4000/add-email', { email: email })
+      .post('https://wisebets.onrender.com/add-email', { email: email })
       .then((response: any) => {
         console.log(response.data) // Log the response from the server
         // Update UI or show a success message
