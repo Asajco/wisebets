@@ -38,8 +38,9 @@ app.post('/payment', cors(), async (req, res) => {
       mode: 'subscription',
       customer_email: email,
       //TODO change routing to okay route
-      success_url: 'http://wisebets.sk/#/succes',
-      cancel_url: 'http://wisebets.sk/#/cancel',
+
+      success_url: 'https://www.wisebets.sk/#/succes',
+      cancel_url: 'https://www.wisebets.sk/#/cancel',
     })
     console.log('Session created:', session.id)
     console.log(req.body)

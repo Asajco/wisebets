@@ -21,6 +21,7 @@ const Succes = ({ customer_email }: any) => {
       const userEmail = localStorage.getItem('userEmail')
       const totalPrice = localStorage.getItem('totalPrice')
       const productName = localStorage.getItem('product_name')
+      const userName = localStorage.getItem('userName')
 
       await axios.post('http://https://wisebets.onrender.com/send-email', {
         customer_email: userEmail,
@@ -29,6 +30,22 @@ const Succes = ({ customer_email }: any) => {
         // Include any necessary data for the email
         // For example, order details, customer information, etc.
       })
+      try {
+        const response = await axios.post(
+          //https://wisebets.onrender.com
+          //http://localhost:4000
+          'https://wisebets.onrender.com/create-invoice',
+          {
+            name: `Členstvo ${productName}`,
+            unitPrice: totalPrice,
+            clientName: userName,
+            tax: 20,
+          },
+        )
+        console.log('Response from SuperFaktura:', response.data)
+      } catch (error) {
+        console.log(error)
+      }
     } catch (error) {
       console.error('Error sending email:', error)
     }

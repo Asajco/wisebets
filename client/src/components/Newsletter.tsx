@@ -4,6 +4,7 @@ import {
   Heading,
   Input,
   Textarea,
+  Text,
   useToast,
 } from '@chakra-ui/react'
 import axios from 'axios'
@@ -30,7 +31,7 @@ const Newsletter = () => {
     }
     //https://wisebets.onrender.com/send-newsletter
     await axios
-      .post('http://localhost:4000/send-newsletter', {
+      .post('https://wisebets.onrender.com/send-newsletter', {
         subject: subject,
         message: message,
         emails: emails,
@@ -39,7 +40,7 @@ const Newsletter = () => {
         console.log(response.data) // Log the response from the server
         toast({
           title: 'Úspešné vytvrorenie',
-          duration: 1000,
+          duration: 4000,
           position: 'top-right',
         })
         // Update UI or show a success message
@@ -70,6 +71,7 @@ const Newsletter = () => {
           color: 'white',
         }}
       >
+        <Text>Pre vytvorenie je potrebné klinúť 2x na odoslať</Text>
         <Input
           placeholder="Predmet newslettru"
           onChange={(e) => setSubject(e.target.value)}

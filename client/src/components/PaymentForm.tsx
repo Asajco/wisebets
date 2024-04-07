@@ -31,22 +31,22 @@ export default function PaymentForm() {
   const toast = useToast()
   const handleExpressCheckout = async (e: any) => {
     e.preventDefault()
-    try {
-      const response = await axios.post(
-        //https://wisebets.onrender.com
-        //http://localhost:4000
-        'https://wisebets.onrender.com/create-invoice',
-        {
-          name: `Členstvo ${name}`,
-          unitPrice: totalPriceOfCart,
-          clientName: userName,
-          tax: 20,
-        },
-      )
-      console.log('Response from SuperFaktura:', response.data)
-    } catch (error) {
-      console.log(error)
-    }
+    // try {
+    //   const response = await axios.post(
+    //     //https://wisebets.onrender.com
+    //     //http://localhost:4000
+    //     'https://wisebets.onrender.com/create-invoice',
+    //     {
+    //       name: `Členstvo ${name}`,
+    //       unitPrice: totalPriceOfCart,
+    //       clientName: userName,
+    //       tax: 20,
+    //     },
+    //   )
+    //   console.log('Response from SuperFaktura:', response.data)
+    // } catch (error) {
+    //   console.log(error)
+    // }
     try {
       let productId
       if (name == 'Členstvo STARTER') {
@@ -87,6 +87,7 @@ export default function PaymentForm() {
         //@ts-ignore
         localStorage.setItem('totalPrice', totalPriceOfCart)
         localStorage.setItem('product_name', name)
+        localStorage.setItem('userName', userName)
 
         const { error } = await stripe.redirectToCheckout({
           sessionId: response.data.sessionId,
