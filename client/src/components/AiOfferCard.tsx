@@ -1,15 +1,17 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Flex, Text, useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
 import { colors } from '../store/colors'
 
 const AiOfferCard = (data: any) => {
+  const [isSmallerThan900] = useMediaQuery('(max-width: 900px)')
   data = data.data
   return (
     <Flex
       flexDir="column"
       alignItems="center"
       w="18.5rem"
-      p="1.5rem"
+      px={isSmallerThan900 ? '2.4rem' : '1.5rem'}
+      py="1.5rem"
       border="2px solid"
       borderRadius="0.5rem"
       borderColor={colors.primaryGold}

@@ -51,7 +51,7 @@ const Home = () => {
         alignItems="flex-start"
         gap="1rem"
         color="white"
-        p="2.5rem"
+        p={isSmallerThan900 ? '1.25rem' : '2.5rem'}
         maxW="40rem"
         fontFamily="Poppins"
       >
@@ -167,7 +167,11 @@ const Home = () => {
       >
         ČO VÁM PONÚKA UMELÁ INTELIGENCIA (AI)
       </Heading>
-      <Flex gap="2.5rem" flexDirection={isSmallerThan900 ? 'column' : 'row'}>
+      <Flex
+        gap="2.5rem"
+        p={isSmallerThan900 ? '2rem' : 0}
+        flexDirection={isSmallerThan900 ? 'column' : 'row'}
+      >
         {aiOffer.map((item: any, index) => (
           <AiOfferCard data={item} key={index} />
         ))}

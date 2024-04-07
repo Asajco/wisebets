@@ -150,7 +150,7 @@ const Contact = () => {
             </Text>
           </Link>
           <Link
-            to="https://www.t.me/wisebets_official"
+            to="https://t.me/wisebets_official"
             target="_blanc"
             style={{
               display: 'flex',

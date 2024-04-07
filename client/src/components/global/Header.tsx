@@ -125,11 +125,15 @@ const Header = () => {
             bg="black"
             color={colors.primaryGold}
             fontWeight="bold"
-            fontSize="2rem"
+            fontSize="1.7rem"
             gap="2rem"
           >
-            <a href="#products" onClick={onClose}>
-              Produkts
+            <a
+              href="#products"
+              onClick={onClose}
+              style={{ textAlign: 'center' }}
+            >
+              AKTIVÁCIA ČLENSTVA
             </a>
             <Link to="/qna" onClick={onClose} style={{ textAlign: 'center' }}>
               Často kladené otázky

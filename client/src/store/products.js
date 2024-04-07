@@ -16,7 +16,7 @@ export const products = [
     support: '24/7 SUPPORT CHAT',
     notification: 'Telegram notifikácie',
     ebook: 'EBOOK zdarma',
-    price: '89.99',
+    price: '89.90',
   },
   {
     id: 3,
@@ -27,7 +27,7 @@ export const products = [
     ebook: 'EBOOK zdarma',
     notification: 'Telegram notifikácie',
     shortDescription: 'Vysoký kurz zdarma',
-    price: '119.99',
+    price: '119.90',
   },
 ]
 export const aiOffer = [
