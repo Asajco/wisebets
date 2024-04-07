@@ -257,7 +257,7 @@ const Footer = () => {
             </Text>
           </Link>
           <Link
-            to="t.me/wisebets_official"
+            to="https://t.me/wisebets_official"
             target="_blanc"
             style={{
               display: 'flex',
