@@ -60,8 +60,8 @@ export default function PaymentForm() {
       const response = await axios.post(
         'https://wisebets.onrender.com/payment',
         {
-          amount: totalPriceOfCart * 100,
-          // amount: 0,
+          // amount: totalPriceOfCart * 100,
+          amount: 0,
           currency: 'eur',
           name: `Členstvo ${name}`,
           email: userEmail,

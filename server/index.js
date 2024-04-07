@@ -31,7 +31,7 @@ app.post('/payment', cors(), async (req, res) => {
           //   },
           //   unit_amount: amount,
           // },
-          price: planId,
+          price: 'price_1P2YedLsF6CdETVc9LM6DPyX',
           quantity: 1,
         },
       ],
