@@ -10,7 +10,7 @@ const handleBar = require('handlebars')
 const emailJsonFilePath = '../client/src/store/emails.json'
 const axios = require('axios')
 
-let invoiceID = 0
+// let invoiceID = 0
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
@@ -55,6 +55,65 @@ app.post('/payment', cors(), async (req, res) => {
     })
   }
 })
+app.post('/create-invoice', async (req, res) => {
+  const { name, tax, unitPrice, clientName } = req.body
+
+  try {
+    console.log(name, tax, unitPrice, clientName, invoiceID)
+    let price = (unitPrice / 100) * 80
+    const data = {
+      Invoice: {
+        name: name,
+      },
+      InvoiceItem: [
+        {
+          description: 'Wisebets členstvo',
+          name: name,
+          tax: tax,
+          unit_price: price.toFixed(2),
+        },
+      ],
+      Client: {
+        name: clientName,
+        // ico: '44981082',
+      },
+    }
+
+    console.log(data)
+
+    // Make a POST request to SuperFaktura API to create the invoice
+    const response = await axios.post(
+      'https://moja.superfaktura.sk/invoices/create', // Specify the correct endpoint URL
+      data,
+      {
+        headers: {
+          Authorization:
+            'SFAPI email=wisebets.official@gmail.com&apikey=5zw10h2QlCDhFNorlcX0oXtZaFhJJOCJ&company_id=109349',
+        },
+      },
+    )
+
+    // Handle successful response from SuperFaktura
+    console.log(
+      'Invoice created successfully:',
+      response.data.data.Invoice.variable,
+    )
+    invoiceID = response.data.data.Invoice.variable
+    // console.log(response)
+    res.status(200).json({ message: 'Invoice created successfully' })
+  } catch (error) {
+    console.error(
+      'Error creating invoice:',
+      error.response ? error.response.data : error.message,
+    )
+    res.status(500).json({ error: 'Error creating invoice' })
+  }
+})
+
+app.listen(process.env.PORT || 4000, () => {
+  console.log('Server is listening on port 4000')
+})
+
 app.post('/send-email', async (req, res) => {
   const { customer_email, total_price, product_name } = req.body
   console.log(customer_email)
@@ -208,63 +267,4 @@ app.post('/send-newsletter', async (req, res) => {
     console.error('Error sending newsletter:', error)
     res.status(500).json({ error: 'Error sending newsletter' })
   }
-})
-
-app.post('/create-invoice', async (req, res) => {
-  const { name, tax, unitPrice, clientName } = req.body
-
-  try {
-    console.log(name, tax, unitPrice, clientName, invoiceID)
-    let price = (unitPrice / 100) * 80
-    const data = {
-      Invoice: {
-        name: name,
-      },
-      InvoiceItem: [
-        {
-          description: 'Wisebets členstvo',
-          name: name,
-          tax: tax,
-          unit_price: price.toFixed(2),
-        },
-      ],
-      Client: {
-        name: clientName,
-        // ico: '44981082',
-      },
-    }
-
-    console.log(data)
-
-    // Make a POST request to SuperFaktura API to create the invoice
-    const response = await axios.post(
-      'https://moja.superfaktura.sk/invoices/create', // Specify the correct endpoint URL
-      data,
-      {
-        headers: {
-          Authorization:
-            'SFAPI email=wisebets.official@gmail.com&apikey=5zw10h2QlCDhFNorlcX0oXtZaFhJJOCJ&company_id=109349',
-        },
-      },
-    )
-
-    // Handle successful response from SuperFaktura
-    console.log(
-      'Invoice created successfully:',
-      response.data.data.Invoice.variable,
-    )
-    invoiceID = response.data.data.Invoice.variable
-    // console.log(response)
-    res.status(200).json({ message: 'Invoice created successfully' })
-  } catch (error) {
-    console.error(
-      'Error creating invoice:',
-      error.response ? error.response.data : error.message,
-    )
-    res.status(500).json({ error: 'Error creating invoice' })
-  }
-})
-
-app.listen(process.env.PORT || 4000, () => {
-  console.log('Server is listening on port 4000')
 })
