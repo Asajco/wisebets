@@ -10,7 +10,7 @@ const handleBar = require('handlebars')
 const emailJsonFilePath = '../client/src/store/emails.json'
 const axios = require('axios')
 
-// let invoiceID = 0
+let invoiceID = 0
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
