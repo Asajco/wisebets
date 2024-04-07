@@ -163,70 +163,50 @@ app.post('/add-email', (req, res) => {
 app.post('/send-newsletter', async (req, res) => {
   const { subject, message, emails } = req.body
 
-  // Read emails from JSON file
-  fs.readFile(emailJsonFilePath, 'utf-8', async (err, data) => {
-    if (err) {
-      console.error('Error reading JSON file:', err)
-      return res.status(500).json({ error: 'Error reading JSON file' })
-    }
+  // Create transporter
+  const transporter = nodeMailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'petergacj@gmail.com',
+      pass: 'iqhn mzvb jxhn watj',
+    },
+  })
 
-    // let emails = []
+  const source = fs.readFileSync('newsletterTemplate.html', 'utf-8').toString()
+  const templete = handleBar.compile(source)
+  replacementd = {
+    message: message,
+  }
+  const htmlToSend = templete(replacementd)
 
-    // try {
-    //   // Parse the existing JSON data
-    //   emails = JSON.parse(data).emails
-    // } catch (error) {
-    //   console.error('Error parsing JSON data:', error)
-    //   return res.status(500).json({ error: 'Error parsing JSON data' })
-    // }
+  // Create email options
+  const mailOptions = {
+    from: 'petergacj@gmail.com', // Replace with your email
+    subject: subject,
+    text: message,
+    html: htmlToSend,
+  }
 
-    // Create transporter
-    const transporter = nodeMailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: 'petergacj@gmail.com',
-        pass: 'iqhn mzvb jxhn watj',
-      },
-    })
-    const source = fs
-      .readFileSync('newsletterTemplate.html', 'utf-8')
-      .toString()
-    const templete = handleBar.compile(source)
-    replacementd = {
-      message: message,
-    }
-    const htmlToSend = templete(replacementd)
-
-    // Create email options
-    const mailOptions = {
-      from: 'petergacj@gmail.com', // Replace with your email
-      // to: emails.join(','), // Join all emails from the array
-      subject: subject,
-      text: message,
-      html: htmlToSend,
-    }
-
-    try {
-      // Send email to each recipient separately
-      for (const email of emails) {
-        const mailOptions = {
-          from: 'petergacj@gmail.com',
-          to: email,
-          subject: subject,
-          html: htmlToSend,
-        }
-
-        await transporter.sendMail(mailOptions)
-        console.log(`Email sent to ${email}`)
+  try {
+    // Send email to each recipient separately
+    for (const email of emails) {
+      const mailOptions = {
+        from: 'petergacj@gmail.com',
+        to: email,
+        subject: subject,
+        html: htmlToSend,
       }
 
-      console.log('Newsletter sent')
-      res.status(200).json({ message: 'Newsletter sent successfully' })
-    } catch (error) {
-      console.error('Error sending newsletter:', error)
-      res.status(500).json({ error: 'Error sending newsletter' })
+      await transporter.sendMail(mailOptions)
+      console.log(`Email sent to ${email}`)
     }
-  })
+
+    console.log('Newsletter sent')
+    res.status(200).json({ message: 'Newsletter sent successfully' })
+  } catch (error) {
+    console.error('Error sending newsletter:', error)
+    res.status(500).json({ error: 'Error sending newsletter' })
+  }
 })
 
 app.post('/create-invoice', async (req, res) => {

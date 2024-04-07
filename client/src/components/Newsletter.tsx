@@ -28,8 +28,9 @@ const Newsletter = () => {
     if (emailData) {
       setEmails(emailData)
     }
+    //https://wisebets.onrender.com/send-newsletter
     await axios
-      .post('https://wisebets.onrender.com/send-newsletter', {
+      .post('http://localhost:4000/send-newsletter', {
         subject: subject,
         message: message,
         emails: emails,
