@@ -20,12 +20,12 @@ const Newsletter = () => {
   const toast = useToast()
   const handleSendNewsletter = async () => {
     const emailsSnapshot = await getDocs(collection(db, 'emails'))
-    console.log(emailsSnapshot)
+
     const emailData = emailsSnapshot.docs.map((doc) => {
       const data = doc.data()
       return data.email
     })
-    console.log(emailData)
+
     if (emailData) {
       setEmails(emailData)
     }

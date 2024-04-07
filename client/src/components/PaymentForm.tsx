@@ -48,7 +48,6 @@ export default function PaymentForm() {
     //   console.log(error)
     // }
     try {
-      console.log(name)
       let productId
       if (name == 'Starter') {
         productId = 'price_1P2HeNLsF6CdETVcOF9L8HM5'
