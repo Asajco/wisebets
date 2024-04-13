@@ -75,7 +75,7 @@ export default function PaymentForm() {
         position: 'top-right',
       })
       const itemId = v4()
-      setDoc(doc(collection(db, 'orders'), itemId), {
+      await setDoc(doc(collection(db, 'orders'), itemId), {
         id: itemId,
         email: userEmail,
         phone: userPhone,
