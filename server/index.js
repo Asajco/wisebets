@@ -110,10 +110,17 @@ app.post('/create-invoice', async (req, res) => {
         //  message: 'Ďakujeme za nákup, v prílohe zasielame faktúru.',
       },
     }
-
+    console.log(invoiceID)
     const emailRes = await axios.post(
       'https://moja.superfaktura.sk/invoices/send',
-      emailData,
+      {
+        Email: {
+          invoice_id: invoiceID,
+          to: email, // Use the email address of the client
+          subject: 'Faktúra za členstvo Wisebets',
+          //  message: 'Ďakujeme za nákup, v prílohe zasielame faktúru.',
+        },
+      },
       {
         headers: {
           'Content-Type': 'application/json',
