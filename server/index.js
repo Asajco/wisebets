@@ -163,7 +163,7 @@ app.post('/send-email', async (req, res) => {
   } else if (product_name == 'Elite') {
     telegramLink = 'https://t.me/+21tl9G0tDddlODk0'
   }
-  help
+
   replacementd = {
     invoiceID: emailInvoiceId,
     total_price: total_price,
