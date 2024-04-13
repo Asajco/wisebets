@@ -11,6 +11,7 @@ const emailJsonFilePath = '../client/src/store/emails.json'
 const axios = require('axios')
 
 let invoiceID = 0
+let emailInvoiceId = 0
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
@@ -100,6 +101,7 @@ app.post('/create-invoice', async (req, res) => {
       'Invoice created successfully:',
       response.data.data.Invoice.invoice_id,
     )
+    emailInvoiceId = response.data.data.Invoice.variable
     invoiceID = response.data.data.Invoice.id
     const helpId = invoiceID.toString().slice(-4)
     const emailData = {
@@ -161,8 +163,9 @@ app.post('/send-email', async (req, res) => {
   } else if (product_name == 'Elite') {
     telegramLink = 'https://t.me/+21tl9G0tDddlODk0'
   }
+  help
   replacementd = {
-    invoiceID: invoiceID,
+    invoiceID: emailInvoiceId,
     total_price: total_price,
     product_name: product_name,
     telegramLink: telegramLink,
