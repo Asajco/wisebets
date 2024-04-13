@@ -111,27 +111,26 @@ app.post('/create-invoice', async (req, res) => {
       },
     }
     console.log(invoiceID)
-    setTimeout(() => {
-      const emailRes = axios.post(
-        'https://moja.superfaktura.sk/invoices/send',
-        {
-          Email: {
-            invoice_id: Number(helpId),
-            to: email, // Use the email address of the client
-            subject: 'Faktúra za členstvo Wisebets',
-            //  message: 'Ďakujeme za nákup, v prílohe zasielame faktúru.',
-          },
+
+    const emailRes = axios.post(
+      'https://moja.superfaktura.sk/invoices/send',
+      {
+        Email: {
+          invoice_id: Number(helpId),
+          to: email, // Use the email address of the client
+          subject: 'Faktúra za členstvo Wisebets',
+          //  message: 'Ďakujeme za nákup, v prílohe zasielame faktúru.',
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization:
-              'SFAPI email=wisebets.official@gmail.com&apikey=5zw10h2QlCDhFNorlcX0oXtZaFhJJOCJ&company_id=109349',
-          },
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization:
+            'SFAPI email=wisebets.official@gmail.com&apikey=5zw10h2QlCDhFNorlcX0oXtZaFhJJOCJ&company_id=109349',
         },
-      )
-      console.log('Email suc', emailRes)
-    }, 3000)
+      },
+    )
+    console.log('Email suc', emailRes)
 
     // console.log(response)
     res.status(200).json({ message: 'Invoice created successfully' })
