@@ -9,9 +9,10 @@ const AiOfferCard = (data: any) => {
     <Flex
       flexDir="column"
       alignItems="center"
-      w="18.5rem"
-      px={isSmallerThan900 ? '2.4rem' : '1.5rem'}
-      py="1.5rem"
+      w={isSmallerThan900 ? '18.5rem' : '19.5rem'}
+      px={isSmallerThan900 ? '1.85rem' : '1.5rem'}
+      style={{ hyphens: 'auto' }}
+      py="1.8rem"
       border="2px solid"
       borderRadius="0.5rem"
       borderColor={colors.primaryGold}

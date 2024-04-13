@@ -64,6 +64,7 @@ app.post('/create-invoice', async (req, res) => {
     const data = {
       Invoice: {
         name: name,
+        already_paid: 1,
       },
       InvoiceItem: [
         {
@@ -99,6 +100,28 @@ app.post('/create-invoice', async (req, res) => {
       response.data.data.Invoice.variable,
     )
     invoiceID = response.data.data.Invoice.variable
+
+    const emailData = {
+      InvoiceEmail: {
+        invoice_id: invoiceID,
+        email: email, // Use the email address of the client
+        subject: 'Faktúra za členstvo Wisebets',
+        message: 'Ďakujeme za nákup, v prílohe zasielame faktúru.',
+      },
+    }
+
+    await axios.post(
+      'https://moja.superfaktura.sk/invoices/mark_as_sent',
+      emailData,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization:
+            'SFAPI email=api%40example.com&apikey=c0a4cdcdfe98ca660942d60cf7896de6&company_id=',
+        },
+      },
+    )
+
     // console.log(response)
     res.status(200).json({ message: 'Invoice created successfully' })
   } catch (error) {
