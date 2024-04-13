@@ -56,7 +56,7 @@ app.post('/payment', cors(), async (req, res) => {
   }
 })
 app.post('/create-invoice', async (req, res) => {
-  const { name, tax, unitPrice, clientName } = req.body
+  const { name, tax, unitPrice, clientName, email } = req.body
 
   try {
     console.log(name, tax, unitPrice, clientName, invoiceID)

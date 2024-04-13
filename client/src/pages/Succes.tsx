@@ -26,6 +26,7 @@ const Succes = ({ customer_email }: any) => {
         'https://wisebets.onrender.com/create-invoice',
         {
           name: `Členstvo ${productName}`,
+          email: userEmail,
           unitPrice: totalPrice,
           clientName: userName,
           tax: 20,
