@@ -103,11 +103,11 @@ app.post('/create-invoice', async (req, res) => {
     invoiceID = response.data.data.Invoice.variable
 
     const emailData = {
-      InvoiceEmail: {
+      Email: {
         invoice_id: invoiceID,
-        email: email, // Use the email address of the client
+        to: email, // Use the email address of the client
         subject: 'Faktúra za členstvo Wisebets',
-        message: 'Ďakujeme za nákup, v prílohe zasielame faktúru.',
+        //  message: 'Ďakujeme za nákup, v prílohe zasielame faktúru.',
       },
     }
 
