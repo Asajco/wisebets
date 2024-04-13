@@ -114,7 +114,7 @@ app.post('/create-invoice', async (req, res) => {
     await axios.post('https://moja.superfaktura.sk/invoices/send', emailData, {
       headers: {
         Authorization:
-          'SFAPI email==wisebets.official@gmail.com&apikey=5zw10h2QlCDhFNorlcX0oXtZaFhJJOCJ&company_id=109349',
+          'SFAPI email=wisebets.official@gmail.com&apikey=5zw10h2QlCDhFNorlcX0oXtZaFhJJOCJ&company_id=109349',
       },
     })
 
