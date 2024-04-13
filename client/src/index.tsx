@@ -6,7 +6,7 @@ import App from './App'
 import { CartContextProvider } from './store/cartContext'
 
 // Set this variable to true if it's a production environment
-const isProduction = true
+const isProduction = false
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
