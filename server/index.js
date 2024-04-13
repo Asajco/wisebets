@@ -98,9 +98,9 @@ app.post('/create-invoice', async (req, res) => {
     // Handle successful response from SuperFaktura
     console.log(
       'Invoice created successfully:',
-      response.data.data.Invoice.variable,
+      response.data.data.Invoice.invoice_id,
     )
-    invoiceID = response.data.data.Invoice.variable
+    invoiceID = response.data.data.Invoice.id
     const helpId = invoiceID.toString().slice(-4)
     const emailData = {
       Email: {
@@ -116,7 +116,7 @@ app.post('/create-invoice', async (req, res) => {
       'https://moja.superfaktura.sk/invoices/send',
       {
         Email: {
-          invoice_id: Number(helpId),
+          invoice_id: invoiceID,
           to: email, // Use the email address of the client
           subject: 'Faktúra za členstvo Wisebets',
           //  message: 'Ďakujeme za nákup, v prílohe zasielame faktúru.',
