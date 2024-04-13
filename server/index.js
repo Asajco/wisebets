@@ -65,7 +65,7 @@ app.post('/create-invoice', async (req, res) => {
     const data = {
       Invoice: {
         name: name,
-        // already_paid: 1,
+        already_paid: 1,
       },
       InvoiceItem: [
         {
