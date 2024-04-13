@@ -101,7 +101,7 @@ app.post('/create-invoice', async (req, res) => {
       response.data.data.Invoice.variable,
     )
     invoiceID = response.data.data.Invoice.variable
-
+    const helpId = invoiceID.toString().slice(-4)
     const emailData = {
       Email: {
         invoice_id: invoiceID,
@@ -111,12 +111,12 @@ app.post('/create-invoice', async (req, res) => {
       },
     }
     console.log(invoiceID)
-    setTimeout(async () => {
-      const emailRes = await axios.post(
+    setTimeout(() => {
+      const emailRes = axios.post(
         'https://moja.superfaktura.sk/invoices/send',
         {
           Email: {
-            invoice_id: response.data.data.Invoice.variable,
+            invoice_id: Number(helpId),
             to: email, // Use the email address of the client
             subject: 'Faktúra za členstvo Wisebets',
             //  message: 'Ďakujeme za nákup, v prílohe zasielame faktúru.',
