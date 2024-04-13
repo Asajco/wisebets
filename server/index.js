@@ -111,7 +111,7 @@ app.post('/create-invoice', async (req, res) => {
       },
     }
 
-    const email = await axios.post(
+    const emailRes = await axios.post(
       'https://moja.superfaktura.sk/invoices/send',
       emailData,
       {
@@ -122,7 +122,7 @@ app.post('/create-invoice', async (req, res) => {
         },
       },
     )
-    console.log('Email suc', email)
+    console.log('Email suc', emailRes)
 
     // console.log(response)
     res.status(200).json({ message: 'Invoice created successfully' })
