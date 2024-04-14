@@ -26,6 +26,7 @@ const About = () => {
             alignItems="center"
             gap="0.5rem"
             mb="1rem"
+            style={{ hyphens: 'auto' }}
             maxW="50rem"
             flexWrap="wrap"
             textAlign="justify"
