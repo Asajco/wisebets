@@ -175,8 +175,8 @@ app.post('/send-email', async (req, res) => {
   const transporter = nodeMailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'petergacj@gmail.com',
-      pass: 'iqhn mzvb jxhn watj',
+      user: 'wisebets.official@gmail.com',
+      pass: 'lazr btug cplb ebvz',
     },
   })
 
@@ -263,8 +263,8 @@ app.post('/send-newsletter', async (req, res) => {
   const transporter = nodeMailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'petergacj@gmail.com',
-      pass: 'iqhn mzvb jxhn watj',
+      user: 'wisebets.official@gmail.com',
+      pass: 'lazr btug cplb ebvz',
     },
   })
 
