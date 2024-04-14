@@ -18,10 +18,11 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.post('/payment', cors(), async (req, res) => {
-  let { amount, currency, name, email, planId } = req.body
+  let { amount, currency, name, email, planId, coupon } = req.body
 
   try {
     const session = await stripe.checkout.sessions.create({
+      allow_promotion_codes: true,
       payment_method_types: ['card'],
       line_items: [
         {
@@ -37,6 +38,11 @@ app.post('/payment', cors(), async (req, res) => {
           quantity: 1,
         },
       ],
+      //     discounts: [
+      //   {
+      //     coupon: '{{COUPON_ID}}',
+      //   },
+      // ],
       mode: 'subscription',
       customer_email: email,
       //TODO change routing to okay route

@@ -22,6 +22,7 @@ export default function PaymentForm() {
   const [userName, setUserName] = useState<any>()
   const [userEmail, setUserEmail] = useState<any>()
   const [userPhone, setUserPhone] = useState<any>()
+  const [coupon, setCoupon] = useState<any>()
   const [allowed, setAllowed] = useState(false)
   const stripe: any = useStripe()
   const { totalPriceOfCart, cart } = useContext(CartContext)
@@ -64,6 +65,7 @@ export default function PaymentForm() {
           currency: 'eur',
           name: `Členstvo ${name}`,
           email: userEmail,
+          coupon: coupon,
           planId: productId,
         },
       )
@@ -179,7 +181,14 @@ export default function PaymentForm() {
             <Text color="white" fontSize="0.8rem" mt="0.5rem">
               Zadajte číslo, ktoré používate v aplikácii Telegram
             </Text>
-
+            <Input
+              onChange={(e) => setCoupon(e.target.value)}
+              border="2px solid "
+              color="white"
+              borderColor={colors.primaryGold}
+              mt="2rem"
+              placeholder="Zadajte kupón"
+            />
             <Checkbox
               onChange={(e) => setAllowed(e.target.checked)}
               color="white"
