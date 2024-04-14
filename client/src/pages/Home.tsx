@@ -54,6 +54,7 @@ const Home = () => {
         p={isSmallerThan900 ? '1.25rem' : '2.5rem'}
         maxW="40rem"
         fontFamily="Poppins"
+        style={{ hyphens: 'auto' }}
       >
         <Image
           src={crown}
@@ -79,12 +80,14 @@ const Home = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          style={{ hyphens: 'auto' }}
         >
-          <Text>
+          <Text style={{ hyphens: 'auto' }}>
             <Text
               color={colors.primaryGold}
               fontWeight="bold"
               fontSize="1.3rem"
+              style={{ hyphens: 'auto' }}
               mb="0.5rem"
             >
               Skúsenosti a znalosti
@@ -97,8 +100,9 @@ const Home = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          style={{ hyphens: 'auto' }}
         >
-          <Text>
+          <Text style={{ hyphens: 'auto' }}>
             <Text
               color={colors.primaryGold}
               fontWeight="bold"
@@ -115,12 +119,14 @@ const Home = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          style={{ hyphens: 'auto' }}
         >
           <Text>
             <Text
               color={colors.primaryGold}
               fontWeight="bold"
               fontSize="1.3rem"
+              style={{ hyphens: 'auto' }}
               mb="0.5rem"
             >
               Transparentnosť
@@ -133,6 +139,7 @@ const Home = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
+          style={{ hyphens: 'auto' }}
         >
           <Text>
             <Text
