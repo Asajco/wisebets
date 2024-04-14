@@ -181,14 +181,14 @@ export default function PaymentForm() {
             <Text color="white" fontSize="0.8rem" mt="0.5rem">
               Zadajte číslo, ktoré používate v aplikácii Telegram
             </Text>
-            <Input
+            {/* <Input
               onChange={(e) => setCoupon(e.target.value)}
               border="2px solid "
               color="white"
               borderColor={colors.primaryGold}
               mt="2rem"
               placeholder="Zadajte kupón"
-            />
+            /> */}
             <Checkbox
               onChange={(e) => setAllowed(e.target.checked)}
               color="white"
