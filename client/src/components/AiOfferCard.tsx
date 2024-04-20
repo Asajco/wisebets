@@ -9,9 +9,15 @@ const AiOfferCard = (data: any) => {
     <Flex
       flexDir="column"
       alignItems="center"
-      w={isSmallerThan900 ? '18.5rem' : '19.5rem'}
+      maxW={isSmallerThan900 ? '18.5rem' : '19.5rem'}
+      minH="22.5rem"
       px={isSmallerThan900 ? '1.85rem' : '1.5rem'}
-      style={{ hyphens: 'auto' }}
+      style={{
+        textJustify: 'inter-word',
+        hyphens: 'auto',
+        wordBreak: 'normal',
+        textOverflow: 'clip',
+      }}
       py="1.8rem"
       border="2px solid"
       borderRadius="0.5rem"
@@ -31,11 +37,21 @@ const AiOfferCard = (data: any) => {
       </Text>
       <Text
         textAlign="justify"
+        style={{
+          wordBreak: 'break-word',
+          hyphens: 'auto',
+          textOverflow: 'clip',
+          msHyphens: 'auto',
+          hyphenateCharacter: 'auto',
+          WebkitHyphenateCharacter: 'auto',
+          WebkitHyphens: 'auto',
+          wordSpacing: isSmallerThan900 ? '-0.15rem' : '0',
+        }}
         mt="1.5rem"
         color="whitesmoke"
         fontSize="1.10rem"
         alignSelf="flex-end"
-        style={{ textJustify: 'inter-word' }}
+        // style={{ textJustify: 'inter-word' }}
       >
         {data.text}
       </Text>

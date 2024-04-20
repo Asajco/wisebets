@@ -25,11 +25,10 @@ const About = () => {
             flexDir="column"
             alignItems="center"
             gap="0.5rem"
+            textAlign="justify"
             mb="1rem"
-            style={{ hyphens: 'auto' }}
             maxW="50rem"
             flexWrap="wrap"
-            textAlign="justify"
             fontFamily="Poppins"
             position="relative"
             p="3rem"
@@ -63,7 +62,22 @@ const About = () => {
             >
               {item.question}
             </Heading>
-            <Text fontFamily="Poppins" color="whitesmoke">
+            <Text
+              fontFamily="Poppins"
+              color="whitesmoke"
+              textAlign="justify"
+              style={{
+                hyphens: 'auto',
+                wordSpacing: isSmallerThan1200 ? '-0.15rem' : '0',
+                msTextOverflow: 'ellipsis',
+                WebkitHyphens: 'auto',
+                WebkitAppearance: 'none',
+                overflowWrap: 'break-word',
+                wordBreak: 'normal',
+                textJustify: 'inter-word',
+                textOverflow: 'clip',
+              }}
+            >
               {item.answer}
             </Text>
           </Flex>

@@ -50,7 +50,7 @@ const Contact = () => {
   return (
     <Flex
       fontFamily="Poppins"
-      p="2rem"
+      p="32px"
       display="flex"
       flexDir={isSmallerThan1000 ? 'column-reverse' : 'row'}
       alignItems="center"
@@ -95,6 +95,9 @@ const Contact = () => {
             borderColor={colors.primaryGold}
             onChange={(e) => setEmail(e.target.value)}
             _focus={{ textDecoration: 'none' }}
+            style={{
+              WebkitAppearance: 'none', // Add -webkit- prefix
+            }}
           />
           <Button
             type="submit"

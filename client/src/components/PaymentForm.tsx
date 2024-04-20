@@ -114,7 +114,10 @@ export default function PaymentForm() {
           flexDir="column"
           fontFamily="Poppins"
         >
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            style={{ maxWidth: '25rem' }}
+          >
             <fieldset className="FormGroup">
               <Flex flexDir="column" alignItems="center" className="FormRow">
                 <Heading
@@ -157,6 +160,9 @@ export default function PaymentForm() {
               onChange={(e) => setUserName(e.target.value)}
               border="2px solid "
               color="white"
+              style={{
+                WebkitAppearance: 'none', // Add -webkit- prefix
+              }}
               borderColor={colors.primaryGold}
               mt="2rem"
               placeholder="Zadajte vaše meno..."
@@ -166,6 +172,9 @@ export default function PaymentForm() {
               border="2px solid "
               color="white"
               borderColor={colors.primaryGold}
+              style={{
+                WebkitAppearance: 'none', // Add -webkit- prefix
+              }}
               mt="2rem"
               placeholder="Zadajte váš email..."
             />
@@ -177,6 +186,9 @@ export default function PaymentForm() {
               borderColor={colors.primaryGold}
               mt="2rem"
               placeholder="Zadajte vaše tel. číslo"
+              style={{
+                WebkitAppearance: 'none', // Add -webkit- prefix
+              }}
             />
             <Text color="white" fontSize="0.8rem" mt="0.5rem">
               Zadajte číslo, ktoré používate v aplikácii Telegram

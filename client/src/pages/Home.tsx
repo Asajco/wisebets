@@ -51,10 +51,10 @@ const Home = () => {
         alignItems="flex-start"
         gap="1rem"
         color="white"
-        p={isSmallerThan900 ? '1.25rem' : '2.5rem'}
+        p={isSmallerThan900 ? '1.75rem' : '2.5rem'}
         maxW="40rem"
         fontFamily="Poppins"
-        style={{ hyphens: 'auto' }}
+        style={{ hyphens: 'auto', wordSpacing: '-0.05rem' }}
       >
         <Image
           src={crown}
@@ -178,6 +178,12 @@ const Home = () => {
         gap="2.5rem"
         p={isSmallerThan900 ? '2rem' : 0}
         flexDirection={isSmallerThan900 ? 'column' : 'row'}
+        style={{
+          textJustify: 'inter-word',
+          hyphens: 'auto',
+          wordBreak: 'normal',
+          textOverflow: 'clip',
+        }}
       >
         {aiOffer.map((item: any, index) => (
           <AiOfferCard data={item} key={index} />

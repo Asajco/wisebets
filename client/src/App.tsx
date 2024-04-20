@@ -15,7 +15,13 @@ import Admin from './pages/Admin'
 
 function App() {
   return (
-    <Box backgroundColor="black" minH="100vh">
+    <Box
+      backgroundColor="black"
+      minH="100vh"
+      style={{
+        WebkitAppearance: 'none', // Add -webkit- prefix
+      }}
+    >
       <Header />
       <Routes>
         <Route index path="/home" element={<Home />} />
