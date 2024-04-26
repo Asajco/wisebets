@@ -4,12 +4,16 @@ import { colors } from '../store/colors'
 import { Link } from 'react-router-dom'
 import CartContext from '../store/cartContext'
 import axios from 'axios'
+import { collection, doc, setDoc } from 'firebase/firestore'
+import { db } from '../firebase/config'
+import { v4 } from 'uuid'
 
 const Succes = ({ customer_email }: any) => {
   const [isSmallerThan1200] = useMediaQuery('(max-width: 1200px)')
   const userEmail = localStorage.getItem('userEmail')
   const totalPrice = localStorage.getItem('totalPrice')
   const productName = localStorage.getItem('product_name')
+  const userPhone = localStorage.getItem('userPhone')
   const userName = localStorage.getItem('userName')
   useEffect(() => {
     // Check if the URL contains 'success' indicating successful payment redirection
@@ -19,6 +23,14 @@ const Succes = ({ customer_email }: any) => {
   }, [])
 
   const sendEmail = async () => {
+    const itemId = v4()
+    await setDoc(doc(collection(db, 'orders'), itemId), {
+      id: itemId,
+      email: userEmail,
+      phone: userPhone,
+      user_name: userName,
+      name: productName,
+    })
     try {
       const response = await axios.post(
         //https://wisebets.onrender.com

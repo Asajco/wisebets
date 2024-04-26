@@ -1,5 +1,6 @@
 import { useStripe } from '@stripe/react-stripe-js'
 import axios from 'axios'
+import { useForm } from 'react-hook-form'
 import React, { useContext, useState } from 'react'
 import CartContext from '../store/cartContext'
 import Success from '../pages/Succes'
@@ -19,17 +20,35 @@ import { v4 } from 'uuid'
 import { collection, doc, setDoc } from 'firebase/firestore'
 export default function PaymentForm() {
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState<any>()
   const [userName, setUserName] = useState<any>()
   const [userEmail, setUserEmail] = useState<any>()
   const [userPhone, setUserPhone] = useState<any>()
   const [coupon, setCoupon] = useState<any>()
   const [allowed, setAllowed] = useState(false)
   const stripe: any = useStripe()
+  const { register } = useForm()
   const { totalPriceOfCart, cart } = useContext(CartContext)
   const [isSmallerThan1200] = useMediaQuery('(max-width: 1200px)')
   const [isSmallerThan900] = useMediaQuery('(max-width: 900px)')
   const name = cart.map((item) => item.name).toString()
   const toast = useToast()
+
+  const isEmailValid = (email: any) => {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+    return emailPattern.test(email)
+  }
+  const handleEmailChange = (e: any) => {
+    const value = e.target.value
+    setUserEmail(value)
+
+    if (!isEmailValid(value)) {
+      setError('Neplatná emailová adresa!')
+    } else {
+      setError('')
+    }
+  }
+
   const handleExpressCheckout = async (e: any) => {
     e.preventDefault()
     // try {
@@ -48,6 +67,7 @@ export default function PaymentForm() {
     // } catch (error) {
     //   console.log(error)
     // }
+
     try {
       let productId
       if (name == 'Starter') {
@@ -57,6 +77,13 @@ export default function PaymentForm() {
       } else {
         productId = 'price_1P2HgPLsF6CdETVcD5ysXOBN'
       }
+      toast({
+        title: 'Za chvílu budete presmerovaný',
+        status: 'info',
+        duration: 2000,
+        isClosable: true,
+        position: 'top-right',
+      })
       const response = await axios.post(
         'https://wisebets.onrender.com/payment',
         {
@@ -69,25 +96,13 @@ export default function PaymentForm() {
           planId: productId,
         },
       )
-      toast({
-        title: 'Za chvílľu budete presmerovaný',
-        status: 'info',
-        duration: 2000,
-        isClosable: true,
-        position: 'top-right',
-      })
-      const itemId = v4()
-      await setDoc(doc(collection(db, 'orders'), itemId), {
-        id: itemId,
-        email: userEmail,
-        phone: userPhone,
-        name: name,
-      })
+
       if (response.data.sessionId) {
         console.log(response.data)
         localStorage.setItem('userEmail', userEmail)
         //@ts-ignore
         localStorage.setItem('totalPrice', totalPriceOfCart)
+        localStorage.setItem('userPhone', userPhone)
         localStorage.setItem('product_name', name)
         localStorage.setItem('userName', userName)
 
@@ -97,10 +112,24 @@ export default function PaymentForm() {
 
         if (error) {
           console.error('Error redirecting to checkout:', error)
+          toast({
+            title: 'Niekde nastala chyba!',
+            status: 'error',
+            isClosable: true,
+            duration: 2000,
+            position: 'top-right',
+          })
         }
       }
     } catch (error) {
       console.error('Error initiating Express Checkout:', error)
+      toast({
+        title: 'Niekde nastala chyba!',
+        status: 'error',
+        isClosable: true,
+        duration: 2000,
+        position: 'top-right',
+      })
     }
   }
 
@@ -167,9 +196,13 @@ export default function PaymentForm() {
               mt="2rem"
               placeholder="Zadajte vaše meno..."
             />
+            <Text color="white" fontSize="0.8rem" mt="0.5rem">
+              Zadajte meno, ktoré používate v aplikácii Telegram
+            </Text>
             <Input
-              onChange={(e) => setUserEmail(e.target.value)}
+              // onChange={(e) => setUserEmail(e.target.value)}
               border="2px solid "
+              onChange={handleEmailChange}
               color="white"
               borderColor={colors.primaryGold}
               style={{
@@ -178,7 +211,11 @@ export default function PaymentForm() {
               mt="2rem"
               placeholder="Zadajte váš email..."
             />
-
+            {error && (
+              <Text mt="0.5rem" color="white">
+                {error}
+              </Text>
+            )}
             <Input
               onChange={(e) => setUserPhone(e.target.value)}
               border="2px solid "

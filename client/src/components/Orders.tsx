@@ -45,6 +45,9 @@ const Orders = () => {
               Email
             </Th>
             <Th fontFamily="Poppins" color="white">
+              Name
+            </Th>
+            <Th fontFamily="Poppins" color="white">
               Phone
             </Th>
             <Th fontFamily="Poppins" color="white">
@@ -61,6 +64,7 @@ const Orders = () => {
               borderRadius="0.5rem"
             >
               <Td>{item.email}</Td>
+              <Td>{item.user_name}</Td>
               <Td>{item.phone}</Td>
               <Td>{item.name}</Td>
             </Tr>
