@@ -243,7 +243,8 @@ export default function PaymentForm() {
               color="white"
               mt="2rem"
             >
-              Súhlasím so spracovaním osobných údajov
+              Súhlasím so spracovaním osobných údajov a všeobecnými obchodnými
+              podmienkami
             </Checkbox>
             {allowed && (
               <Button

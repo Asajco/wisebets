@@ -60,7 +60,7 @@ const Card = (data: any) => {
         <Text>{data.notification}</Text>
         <Text>{data.shortDescription ? data.shortDescription : null}</Text>
         <Text fontWeight="bold" fontSize="1.25rem" color={colors.primaryGold}>
-          {data.price} €
+          {data.price} € / 30 dní
         </Text>
       </Flex>
       <Button
