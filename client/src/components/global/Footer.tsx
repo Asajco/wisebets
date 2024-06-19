@@ -7,46 +7,46 @@ import {
   useToast,
   Text,
   useMediaQuery,
-} from '@chakra-ui/react'
-import React, { useState } from 'react'
-import { colors } from '../../store/colors'
-import { Link } from 'react-router-dom'
-import { collection, doc, setDoc } from 'firebase/firestore'
-import { db } from '../../firebase/config'
-import axios from 'axios'
-import { v4 } from 'uuid'
+} from "@chakra-ui/react";
+import React, { useState } from "react";
+import { colors } from "../../store/colors";
+import { Link } from "react-router-dom";
+import { collection, doc, setDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
+import axios from "axios";
+import { v4 } from "uuid";
 
 const Footer = () => {
-  const [email, setEmail] = useState<any>()
+  const [email, setEmail] = useState<any>();
 
-  const [isSmallerThan900] = useMediaQuery('(max-width: 900px)')
-  const toast = useToast()
-  const businessPdfPath = require('../../assets/pdf/PODMIENKY PLATIEB A AKTIVÁCIE.pdf')
-  const personalPdfPath = require('../../assets/pdf/SPRACOVANIE OSOBNÝCH ÚDAJOV Informačná povinnosť prevádzkovateľa voči dotknutej osobe-2.pdf')
-  const overviewPdfPath = require('../../assets/pdf/VŠEOBECNÉ OBCHODNÉ PODMIENKY Informačná povinnosť o všeobecných obchodných podmienkach-3.pdf')
-  const logo = require('../../assets/logo.png')
+  const [isSmallerThan900] = useMediaQuery("(max-width: 900px)");
+  const toast = useToast();
+  const businessPdfPath = require("../../assets/pdf/PODMIENKY PLATIEB A AKTIVÁCIE.pdf");
+  const personalPdfPath = require("../../assets/pdf/SPRACOVANIE OSOBNÝCH ÚDAJOV Informačná povinnosť prevádzkovateľa voči dotknutej osobe-2.pdf");
+  const overviewPdfPath = require("../../assets/pdf/VŠEOBECNÉ OBCHODNÉ PODMIENKY Informačná povinnosť o všeobecných obchodných podmienkach-3.pdf");
+  const logo = require("../../assets/logo.png");
 
   const handleSubscribe = async () => {
     try {
-      await setDoc(doc(collection(db, 'emails'), email), {
+      await setDoc(doc(collection(db, "emails"), email), {
         email,
-      })
+      });
       toast({
-        title: 'Úspešné prihlásenie na odber!',
-        position: 'top-right',
+        title: "Úspešné prihlásenie na odber!",
+        position: "top-right",
         duration: 1000,
-        status: 'info',
-      })
+        status: "info",
+      });
     } catch (error) {
-      console.log(error)
+      console.log(error);
       toast({
         title: `Nepodarilo sa prihlásiť na odber!`,
         description: `Skontrolujte prosím vaše údaje a skúste znovu.`,
-        position: 'top-right',
+        position: "top-right",
         isClosable: true,
         duration: 5000,
-        status: 'error',
-      })
+        status: "error",
+      });
     }
     // await axios
     //   .post('https://wisebets.onrender.com/add-email', { email: email })
@@ -72,7 +72,7 @@ const Footer = () => {
     //     // Handle errors or show error message
     //   })
     // setEmail('')
-  }
+  };
 
   return (
     <Flex
@@ -80,18 +80,18 @@ const Footer = () => {
       justifyContent="space-around"
       mt="1rem"
       p="1.5rem"
-      gap={isSmallerThan900 ? '2rem' : 0}
+      gap={isSmallerThan900 ? "2rem" : 0}
       borderTop="2px solid"
-      flexDir={isSmallerThan900 ? 'column' : 'row'}
+      flexDir={isSmallerThan900 ? "column" : "row"}
       borderColor={colors.primaryGold}
     >
       <Flex
         flexDirection="column"
-        alignItems={isSmallerThan900 ? 'center' : 'flex-start'}
-        w={isSmallerThan900 ? '100%' : '60%'}
+        alignItems={isSmallerThan900 ? "center" : "flex-start"}
+        w={isSmallerThan900 ? "100%" : "60%"}
       >
         <Flex
-          flexDir={isSmallerThan900 ? 'column' : 'row'}
+          flexDir={isSmallerThan900 ? "column" : "row"}
           alignItems="center"
           justifyContent="center"
         >
@@ -101,14 +101,14 @@ const Footer = () => {
             h="5.5rem"
             alt="Logo of the company"
             m="1rem"
-            display={isSmallerThan900 ? 'none' : 'block'}
+            display={isSmallerThan900 ? "none" : "block"}
           />
           <Heading
             color={colors.primaryGold}
             fontFamily="Poppins"
             fontWeight="bold"
             alignSelf="center"
-            mb={isSmallerThan900 ? '1rem' : 0}
+            mb={isSmallerThan900 ? "1rem" : 0}
             letterSpacing={2}
           >
             WiseBets
@@ -118,14 +118,14 @@ const Footer = () => {
           color="white"
           fontFamily="Poppins"
           fontSize="0.8rem"
-          pl={isSmallerThan900 ? '0' : '2rem'}
-          textAlign={isSmallerThan900 ? 'justify' : 'left'}
+          pl={isSmallerThan900 ? "0" : "2rem"}
+          textAlign={isSmallerThan900 ? "justify" : "left"}
         >
           Web je určený iba pre užívateľov starších ako 18 rokov. Negarantujeme
           žiadny príjem ani zisk. Ministerstvo financií varuje: Účasťou na
           hazardných hrách môže vzniknúť závislosť
         </Text>
-        <Flex
+        {/* <Flex
           flexDir={isSmallerThan900 ? 'column' : 'row'}
           alignItems="start"
           gap="1rem"
@@ -164,7 +164,7 @@ const Footer = () => {
               Všeobecné obchodné podmienky
             </Text>
           </a>
-        </Flex>
+        </Flex> */}
       </Flex>
 
       <Flex
@@ -172,7 +172,7 @@ const Footer = () => {
         alignItems="center"
         fontSize="0.8rem"
         gap="1rem"
-        w={isSmallerThan900 ? '100%' : '40%'}
+        w={isSmallerThan900 ? "100%" : "40%"}
       >
         <Flex flexDir="column">
           <Heading
@@ -185,23 +185,23 @@ const Footer = () => {
           </Heading>
           <form
             style={{
-              display: 'flex',
-              flexDirection: isSmallerThan900 ? 'column' : 'row',
-              width: '100%',
-              color: 'white',
-              gap: '1rem',
-              alignContent: 'center',
-              justifyContent: 'center',
+              display: "flex",
+              flexDirection: isSmallerThan900 ? "column" : "row",
+              width: "100%",
+              color: "white",
+              gap: "1rem",
+              alignContent: "center",
+              justifyContent: "center",
             }}
             onSubmit={(e) => {
-              e.preventDefault()
+              e.preventDefault();
             }}
           >
             <Input
               placeholder="Zadajte Váš e-mail..."
               borderColor={colors.primaryGold}
               onChange={(e) => setEmail(e.target.value)}
-              _focus={{ textDecoration: 'none' }}
+              _focus={{ textDecoration: "none" }}
             />
             <Button
               type="submit"
@@ -212,9 +212,9 @@ const Footer = () => {
               border="2px solid  #dab56f"
               bg="black"
               _hover={{
-                backgroundColor: '#dab56f',
-                color: 'black',
-                border: 'none',
+                backgroundColor: "#dab56f",
+                color: "black",
+                border: "none",
               }}
             >
               Odoberať
@@ -230,11 +230,11 @@ const Footer = () => {
             to="https://www.facebook.com/wisebets.official"
             target="_blanc"
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              borderRight: '2px solid gray',
-              paddingRight: '1rem',
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              borderRight: "2px solid gray",
+              paddingRight: "1rem",
             }}
           >
             <Text color="white" fontFamily="Poppins" fontWeight="bold">
@@ -245,11 +245,11 @@ const Footer = () => {
             to="https://www.instagram.com/wisebets_official/"
             target="_blanc"
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              borderRight: '2px solid gray',
-              paddingRight: '1rem',
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              borderRight: "2px solid gray",
+              paddingRight: "1rem",
             }}
           >
             <Text color="white" fontFamily="Poppins" fontWeight="bold">
@@ -260,11 +260,11 @@ const Footer = () => {
             to="https://t.me/wisebets_official"
             target="_blanc"
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              borderRight: '2px solid gray',
-              paddingRight: '1rem',
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              borderRight: "2px solid gray",
+              paddingRight: "1rem",
             }}
           >
             <Text color="white" fontFamily="Poppins" fontWeight="bold">
@@ -274,7 +274,7 @@ const Footer = () => {
         </Flex>
       </Flex>
     </Flex>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
