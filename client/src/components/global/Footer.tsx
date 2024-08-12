@@ -125,8 +125,8 @@ const Footer = () => {
           žiadny príjem ani zisk. Ministerstvo financií varuje: Účasťou na
           hazardných hrách môže vzniknúť závislosť
         </Text>
-        {/* <Flex
-          flexDir={isSmallerThan900 ? 'column' : 'row'}
+        <Flex
+          flexDir={isSmallerThan900 ? "column" : "row"}
           alignItems="start"
           gap="1rem"
           fontSize="0.85rem"
@@ -135,36 +135,36 @@ const Footer = () => {
           mb="2rem"
           color="#92989F"
         >
-          <a href={businessPdfPath} download style={{ textDecoration: 'none' }}>
+          <a href={businessPdfPath} download style={{ textDecoration: "none" }}>
             <Text
               fontFamily="Poppins"
-              borderRight={isSmallerThan900 ? 'none' : '2px solid gray'}
+              borderRight={isSmallerThan900 ? "none" : "2px solid gray"}
               pr="1rem"
               color="#92989F"
             >
               Podmienky platieb a aktivácie
             </Text>
           </a>
-          <a href={personalPdfPath} download style={{ textDecoration: 'none' }}>
+          <a href={personalPdfPath} download style={{ textDecoration: "none" }}>
             <Text
               fontFamily="Poppins"
-              borderRight={isSmallerThan900 ? 'none' : '2px solid gray'}
+              borderRight={isSmallerThan900 ? "none" : "2px solid gray"}
               pr="1rem"
             >
               Spracovanie osobných údajov
             </Text>
           </a>
 
-          <a href={overviewPdfPath} download style={{ textDecoration: 'none' }}>
+          <a href={overviewPdfPath} download style={{ textDecoration: "none" }}>
             <Text
               fontFamily="Poppins"
-              borderRight={isSmallerThan900 ? 'none' : '2px solid gray'}
+              borderRight={isSmallerThan900 ? "none" : "2px solid gray"}
               pr="1rem"
             >
               Všeobecné obchodné podmienky
             </Text>
           </a>
-        </Flex> */}
+        </Flex>
       </Flex>
 
       <Flex
